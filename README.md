@@ -56,48 +56,72 @@ List of other features outside of the MVPs scope
 ## ROUTES:
 
 - GET / 
-  - renders the homepage
-- GET /auth/signup
-  - redirects to / if user logged in
-  - renders the signup form (with flash msg)
-- POST /auth/signup
-  - redirects to / if user logged in
+  - renders index.hbs
+
+- GET /register
+  - renders register.hbs with form for user to register
+
+- POST /register
   - body:
-    - username
+    - firstname
+    - lastname
     - email
     - password
-- GET /auth/login
-  - redirects to / if user logged in
-  - renders the login form (with flash msg)
-- POST /auth/login
-  - redirects to / if user logged in
-  - body:
-    - username
-    - password
-- POST /auth/logout
-  - body: (empty)
+    - address
+    - phone number
 
-- GET /events
-  - renders the event list + the create form
-- POST /events/create 
-  - redirects to / if user is anonymous
-  - body: 
-    - name
-    - date
-    - location
-    - description
-- GET /events/:id
-  - renders the event detail page
-  - includes the list of attendees
-  - attend button if user not attending yet
-- POST /events/:id/attend 
-  - redirects to / if user is anonymous
-  - body: (empty - the user is already stored in the session)
+- GET /login
+  - renders login.hbs with form for login
+
+- POST /login
+  - body:
+    - email
+    - password
+
+- GET /edit-profile
+  - renders edit-profile.hbs
+
+- POST /register
+  - body:
+    - firstname
+    - lastname
+    - email
+    - password
+    - address
+    - phone number
+
+- GET /shop
+  - renders shop.hbs with all products listed
+
+- POST /shop
+  - product id
+
+- GET /categories/fruits
+  - renders shop.hbs with fruits listed
+
+- POST /shop
+  - product id  
+
+- GET /categories/vegetables
+  - renders shop.hbs with vegetables listed
+
+- POST /shop
+  - product id
+
+- GET /:id/cart (id of user)
+  - renders cart.hbs
+
+- GET /:id/checkout (id of user)
+  - renders checkout.hbs
+
+
+
+
 
 
 ## Models
 
-Customer Model:
+User Model:
 1.      First name : String , required
 2.      Last name: String , required
 3.      Email-id: String , required, unique
@@ -111,7 +135,7 @@ Product Model:
 3.      Category ( fruits/ vegetables)
 4.      Price per KG
  
-Shopping Cart
+Cart Model:
 1.      Customer Id ( Object ID)
 2.      Product ID ( ObjectID) [ Array ]
 3.      Date Of purchase 
@@ -126,8 +150,7 @@ https://trello.com/b/WO64dOTc/project-2-grocery-store
 
 ### Git
 
-
-[Repository Link](http://github.com)
+https://github.com/mattalanhoward/Grocery-Store
 
 [Deploy Link](http://heroku.com)
 
