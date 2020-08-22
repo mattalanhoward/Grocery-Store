@@ -137,8 +137,10 @@ Product Model:
  
 Cart Model:
 1.      Customer Id ( Object ID)
-2.      Product ID ( ObjectID) [ Array ]
-3.      Date Of purchase 
+2.      Ordered {true,false}
+3.      Array [ ProductID -> ObjectID , Quantity ]
+4.      Date Of purchase
+
 
 
 
