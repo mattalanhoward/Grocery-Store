@@ -51,6 +51,7 @@ List of other features outside of the MVPs scope
 - admin email customer's order
 - admin upload product route
 - cart icon
+- Fruit / Vegetable Categories
 
 
 ## ROUTES:
@@ -96,25 +97,11 @@ List of other features outside of the MVPs scope
 - POST /shop
   - product id
 
-- GET /categories/fruits
-  - renders shop.hbs with fruits listed
-
-- POST /shop
-  - product id  
-
-- GET /categories/vegetables
-  - renders shop.hbs with vegetables listed
-
-- POST /shop
-  - product id
-
 - GET /:id/cart (id of user)
   - renders cart.hbs
 
 - GET /:id/checkout (id of user)
   - renders checkout.hbs
-
-
 
 
 
