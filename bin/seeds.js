@@ -10,121 +10,121 @@ require('../configs/db.config');
 const products = [
   {
     name: "Apples",
-    image: "images/apples.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/apples_koxwvr.jpg",
     category: "fruits",
     price: .71
   },
   {
     name: "Bananas",
-    image: "images/bananas.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207905/bananas_h8cxow.jpg",
     category: "fruits",
     price: 1.59
   },
   {
     name: "Kiwi",
-    image: "images/kiwi.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/kiwi_qvqps6.jpg",
     category: "fruits",
     price: .50
   },
   {
     name: "Mango",
-    image: "images/mango.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/mango_wpuacv.jpg",
     category: "fruits",
     price: 1.89
   },
   {
     name: "Melon",
-    image: "images/melon.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/melon_mocasz.jpg",
     category: "fruits",
     price: 2.49
   },
   {
     name: "Oranges",
-    image: "images/oranges.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/oranges_hckhc1.jpg",
     category: "fruits",
     price: 2.99
   },
   {
     name: "Pears",
-    image: "images/pears.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/pears_gbeg2b.jpg",
     category: "fruits",
     price: .34
   },
   {
     name: "Strawberries",
-    image: "images/strawberries.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/strawberries_kav3b0.jpg",
     category: "fruits",
     price: 2.49
   },
   {
     name: "White Grapes",
-    image: "images/white-grape.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/white-grape_noothv.jpg",
     category: "fruits",
     price: 2.19
   },
   {
     name: "Watermelon",
-    image: "images/watermelon.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/watermelon_vptbdy.jpg",
     category: "fruits",
     price: 3.99
   },
   {
     name: "Peppers",
-    image: "images/peppers.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/peppers_piqb6s.jpg",
     category: "vegetables",
     price: 2.49
   },
   {
     name: "Vine Tomatoes",
-    image: "images/tomatoes.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/tomatoes_r5rkgo.jpg",
     category: "vegetables",
     price: .99
   },
   {
     name: "Courgette",
-    image: "images/courgette.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/courgette_kfv1re.jpg",
     category: "vegetables",
     price: .79
   },
   {
     name: "Eggplant",
-    image: "images/eggplant.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/eggplant_asotkv.jpg",
     category: "vegetables",
     price: .79
   },
   {
     name: "Butternut Squash",
-    image: "images/squash.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/squash_fktthu.jpg",
     category: "vegetables",
     price: 1.99
   },
   {
     name: "Celery",
-    image: "images/celery.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/celery_gdhpeh.jpg",
     category: "vegetables",
     price: .95
   },
   {
     name: "Green Beans",
-    image: "images/green-beans.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/green-beans_q5kuuh.jpg",
     category: "vegetables",
     price: .99
   },
   {
     name: "Broccoli",
-    image: "images/broccoli.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/broccoli_dealip.jpg",
     category: "vegetables",
     price: .79
   },
   {
     name: "Cauliflower",
-    image: "images/cauliflower.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/cauliflower_ipxf3v.jpg",
     category: "vegetables",
     price: 1.99
   },
   {
     name: "asparagus",
-    image: "images/asparagus.jpg",
+    imageUrl: "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/asparagus_g7gawm.jpg",
     category: "vegetables",
     price: 3.99
   }
