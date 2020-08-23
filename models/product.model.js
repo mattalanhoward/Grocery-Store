@@ -4,10 +4,9 @@ const { Schema, model } = mongoose;
 const productSchema = new Schema(
   {
     name: String,
-    image: String,
+    imageUrl: String,
     category: String,
     price: Number,
-    quantity: Number
   },
   {
     timestamps: true
