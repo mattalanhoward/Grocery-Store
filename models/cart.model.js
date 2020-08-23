@@ -7,13 +7,12 @@ const cartSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user.model"
     },
-    active: {
+    ordered: {
       type: Boolean,
       default: true
     },
     products: [
       {
-      productId: Number,
       image: String,
       name: String,
       category: String,
