@@ -12,7 +12,8 @@ Boilerplate with bootstrap cdn
 
 
 # Project Name
-XYZ Grocery
+Farm Grocery
+
 ## Description
 This is an online grocery store in which the user can create account / login / and shop for products.  
  
@@ -32,7 +33,7 @@ This is an online grocery store in which the user can create account / login / a
 
 - **logout** - user can log out.
 
-- **shop page** - user can select from 2 categories and scroll through items to add to cart.
+- **shop page** - user can scroll through items and add to cart.
 
 - **cart page** - user can view items in cart, modify quantity or delete items.
 
@@ -51,6 +52,7 @@ List of other features outside of the MVPs scope
 - admin email customer's order
 - admin upload product route
 - cart icon
+- Fruit / Vegetable Categories
 
 
 ## ROUTES:
@@ -96,25 +98,11 @@ List of other features outside of the MVPs scope
 - POST /shop
   - product id
 
-- GET /categories/fruits
-  - renders shop.hbs with fruits listed
-
-- POST /shop
-  - product id  
-
-- GET /categories/vegetables
-  - renders shop.hbs with vegetables listed
-
-- POST /shop
-  - product id
-
 - GET /:id/cart (id of user)
   - renders cart.hbs
 
 - GET /:id/checkout (id of user)
   - renders checkout.hbs
-
-
 
 
 
