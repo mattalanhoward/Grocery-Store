@@ -13,10 +13,86 @@
 </head>
 
 <body>
+  <!-- main top menu => Navigation menu    -->
+  <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3 sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Farm Grocery Shop</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/register">Register</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/edit-profile">Edit Profile</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/shop">Shop</a></li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle nav-link " data-toggle="dropdown" href="#">Categories </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"> <a class="nav-link dropdown-item" href="/categories/fruits">Fruits</a></li>
+              <li class="nav-item"> <a class="nav-link dropdown-item" href="/categories/vegetables">Vegetables</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="/cart">Cart</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/login">Login</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--End of Navigation menu  -->
 
+  <!--  BODY   -->
   <div class="container">
     {{{body}}}
   </div>
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small pt-4">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column Left  -->
+        <div class="col-md-4 mt-md-0 mt-3">
+          <!-- Contact US  -->
+          <h5 class="text-uppercase">Contact Us </h5>
+          <p> Phone: 0687638972 </p>
+          <p> Address: Zandtong 15 , 5658AW, Eindhoven , Netherlands</p>
+          <p> Email: : madeupstore@gmail.com </p>
+        </div>
+        <!-- Grid column -->
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column middle - Google maps -->
+        <div class="col-md-4 mb-md-0 mb-3">
+          <h5 class="text-uppercase"> Find Us: </h5>
+          <div>
+            <!-- Google map  code -->
+          </div>
+        </div>
+
+        <!-- Grid column  About Us -->
+        <div class="col-md-4 mt-md-0 mt-3">
+          <!-- Contact US  -->
+          <h5 class="text-uppercase">About Us </h5>
+          <p> Sunitha and Matthew are currently studying Full Stack Web Development at Ironhack </p>
+        </div>
+      </div>
+      <!-- Grid row -->
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-right py-3">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/"> Mathew and Sunitha </a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+  <!--End of Footer    -->
 
   <!--Bootstrap js cdn links-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

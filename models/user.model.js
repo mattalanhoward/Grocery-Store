@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
@@ -7,40 +7,44 @@ const userSchema = new Schema(
       type: String,
       //trim removes white space.
       trim: true,
-      required: [true, "First Name is required"]
+      required: [true, "First Name is required"],
     },
     lastName: {
       type: String,
       trim: true,
-      required: [true, "Last Name is required"]
+      required: [true, "Last Name is required"],
     },
     email: {
       type: String,
       trim: true,
       required: [true, "Email is required"],
-      unique: true
+      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
+      unique: true,
+      lowercase: true,
     },
-    passwordHash:{
+    passwordHash: {
       type: String,
-      required: [true, "Password is required"]
+      required: [true, "Password is required"],
     },
     address: {
       type: String,
       trim: true,
-      required: [true, "Address is required"]
+      required: [true, "Address is required"],
     },
     phoneNumber: {
       type: String,
       trim: true,
-      required: [true, "Phone Number is required"]
+      required: [true, "Phone Number is required"],
     },
     isAdmin: {
-      type: Boolean
-    }
+      type: Boolean,
+      enum: [true, false],
+      default: false,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-module.exports = model('User', userSchema);
+module.exports = model("User", userSchema);

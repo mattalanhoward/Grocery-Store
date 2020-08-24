@@ -1,8 +1,15 @@
 body {
   padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00b7ff;
+}
+
+form {
+  background-color: #00b7ff;
+}
+#all-pgs {
+  background: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/peppers_piqb6s.jpg");
 }
