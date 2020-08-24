@@ -1,7 +1,9 @@
 /* blue: #95D6F2; */
+/* blue: rgba(136,205,240) */
 
 body {
   width: 100%;
+  align-items: center;
   /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -12,9 +14,23 @@ a {
   
 }
 
+.container{
+  width: 100%;
+}
+
 form {
-  border: 3px solid orange;
-  background-color: #95D6F2;
+  /* border: 3px solid red; */
+  width: 80%;
+  margin: 5% auto;
+  border-radius: 30px;
+  background-color:rgba(136,205,240,.7);
+  
+}
+
+#input-container{
+  /* border: 3px solid yellow; */
+  padding: 30px;
+  
 }
 /* #all-pgs {
   background: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/peppers_piqb6s.jpg");
