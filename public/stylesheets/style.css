@@ -1,15 +1,34 @@
+/* blue: #95D6F2; */
+
 body {
-  padding: 50px;
+  width: 100%;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+  /* border: 3px solid red; */
+  color: #95D6F2;
+  
 }
 
 form {
-  background-color: #00b7ff;
+  border: 3px solid orange;
+  background-color: #95D6F2;
 }
-#all-pgs {
+/* #all-pgs {
   background: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207907/peppers_piqb6s.jpg");
+} */
+#navbarNav{
+  background-color: #95D6F2;
+}
+
+.navbar{
+  /* border: 3px solid red; */
+  margin: 0;
+}
+
+.container-fluid{
+  /*makes navbar full width*/
+  padding: 0px;
 }
