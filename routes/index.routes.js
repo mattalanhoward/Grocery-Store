@@ -1,13 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-router.use((req, res, next) => {
-  console.log(res.session);
-  console.log("hello");
-  next();
-});
-
 /* GET home page */
 router.get("/", (req, res, next) => res.render("index"));
+
+/************************************************/
+//        HTTP-GET-request: /logout
+//
+//         shows the hme page
+/************************************************/
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
 
 module.exports = router;
