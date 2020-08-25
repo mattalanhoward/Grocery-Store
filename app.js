@@ -12,7 +12,7 @@ const app = express();
 
 // require database configuration
 require("./configs/db.config");
-require('./configs/session.config')(app);
+require("./configs/session.config")(app);
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -40,6 +40,7 @@ app.use("/", require("./routes/index.routes"));
 app.use("/register", require("./routes/auth.routes"));
 app.use("/login", require("./routes/login.routes"));
 
-app.use("/edit-profile", require("./routes/profile.routes"))
+app.use("/edit-profile", require("./routes/profile.routes"));
+app.use("/shop", require("./routes/shop.routes"));
 
 module.exports = app;

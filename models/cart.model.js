@@ -20,9 +20,14 @@ const cartSchema = new Schema(
     // Array of products
     products: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "product.model",
-        quantity: Number,
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "product.model",
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
       },
     ],
   },

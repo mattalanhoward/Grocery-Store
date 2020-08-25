@@ -1,0 +1,15 @@
+Welcome to Farm Grocer
+
+{{#each productsList}}
+<form action="/shop/{{_id}}" method="POST">
+  <p> {{name}} </p>
+  <img src={{imageUrl}}>
+  <p>{{price}}</p>
+  <button type="submit"> Add To cart </button>
+</form>
+
+{{/each}}
+
+{{#if errorMessage}}
+<p class="alert alert-danger">{{errorMessage}}</p>
+{{/if}}
