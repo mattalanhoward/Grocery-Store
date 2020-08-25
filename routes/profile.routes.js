@@ -14,93 +14,94 @@ const saltRounds = 10;
 /************************************************/
 
 router.get("/", (req, res) => {
-  console.log(userInSession)
-      res.render("auth/edit-profile", { userInSession: req.session.currentUser });
+  console.log(req.session.currentUser);
+  const id  = req.session.currentUser._id;
+  console.log(`CURRENT USER ID: ${id}`)
+  const { _id , firstName, lastName, email, passwordHash, address, phoneNumber } = req.session.currentUser;
+  userModel.findOneAndUpdate(req.session.currentUser)
+  .then(userToEdit => {
+    res.render("auth/edit-profile", userToEdit);
+  })  
   })
 
 
-// router.post("/", (req, res) => {
-//   // console.log(req.body);
-//   const {
-//     firstname: fname,
-//     lastname: lname,
-//     email,
-//     password,
-//     rePassword,
-//     address,
-//     phone,
-//   } = req.body;
+router.post('/', (req, res, next) => {
+  console.log(req.body)
+    const {
+    _id,
+    firstname: firstName,
+    lastname: lastName,
+    email,
+    password,
+    rePassword,
+    address,
+    phoneNumber,
+  } = req.body;
 
-//   // Check for empty values
-//   if (
-//     fname === "" ||
-//     lname === "" ||
-//     email === "" ||
-//     password === "" ||
-//     rePassword === "" ||
-//     address === "" ||
-//     phone === ""
-//   ) {
-//     res.render("auth/register", {
-//       errorMessage: "Please enter the mandatory fields",
-//     });
-//     return;
-//   }
+  if (
+    firstName === "" ||
+    lastName === "" ||
+    email === "" ||
+    password === "" ||
+    rePassword === "" ||
+    address === "" ||
+    phoneNumber === ""
+  ) {
+    res.render("auth/edit-profile", {
+      errorMessage: "Please enter the mandatory fields",
+    });
+    return;
+  }
 
-//   // Check whether both passwords are matching
-//   if (password !== rePassword) {
-//     res.render("auth/register", {
-//       errorMessage: "Both passwords are not same",
-//     });
-//     return;
-//   }
-//   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-//   // Check for "Speacial characters in password"
-//   if (!regex.test(password)) {
-//     res.status(500).render("auth/register", {
-//       errorMessage:
-//         "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
-//     });
-//     return;
-//   }
-//   // generate hash keys
-//   // console.log("before ecnrypting ... ");
-//   bcryptjs
-//     .genSalt(saltRounds)
-//     .then((salt) => {
-//       // console.log("salt generated", password);
-//       return bcryptjs.hash(password, salt);
-//     })
-//     .then((hashedPassword) => {
-//       // console.log("hashedPassword: ", hashedPassword);
-//       return userModel.create({
-//         firstName: fname,
-//         lastName: lname,
-//         email,
-//         passwordHash: hashedPassword,
-//         address,
-//         phoneNumber: phone,
-//       });
-//     })
-//     .then((resultfromDB) => {
-//       console.log("User is successfully created.... ");
-//       res.redirect("/");
-//       // console.log(resultfromDB);
-//     })
-//     .catch((error) => {
-//       if (error instanceof mongoose.Error.ValidationError) {
-//         res
-//           .status(500)
-//           .render("auth/register", { errorMessage: error.message });
-//       } else if (error.code === 11000) {
-//         res.status(500).render("auth/register", {
-//           errorMessage:
-//             "An account is already registered with your email address",
-//         });
-//       } else {
-//         console.log(error);
-//       }
-//     });
-// });
+    // Check whether both passwords are matching
+    if (password !== rePassword) {
+      res.render("auth/edit-profile", {
+        errorMessage: "Both passwords are not same",
+      });
+      return;
+    }
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    // Check for "Speacial characters in password"
+    if (!regex.test(password)) {
+      res.status(500).render("auth/edit-profile", {
+        errorMessage:
+          "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      });
+      return;
+    }
+    // generate hash keys
+    // console.log("before ecnrypting ... ");
+    bcryptjs
+      .genSalt(saltRounds)
+      .then((salt) => {
+        // console.log("salt generated", password);
+        return bcryptjs.hash(password, salt);
+      })
+      .then((hashedPassword) => {
+        // console.log("hashedPassword: ", hashedPassword);
+        return userModel.update({
+          firstName,
+          lastName,
+          email,
+          passwordHash: hashedPassword,
+          address,
+          phoneNumber,
+        });
+      })
+
+  userModel.findOneAndUpdate(
+    _id,
+    { firstName, lastName, email, password, rePassword, address, phoneNumber }
+    )
+  .then((user) => {
+    console.log(user);
+    req.session.currentUser = user;
+    res.render("", { currentUser: req.session.currentUser });
+  })
+  .catch(error => 
+    res.redirect('/') 
+    `Error while editing a USER INFO: ${error}`);
+
+})
 
 module.exports = router;

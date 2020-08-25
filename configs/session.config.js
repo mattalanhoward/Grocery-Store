@@ -13,10 +13,8 @@ module.exports = (app) => {
       secret: process.env.SESS_SECRET,
       resave: false,
       saveUninitialized: true,
-      rolling: true,
-      resave: true,
       cookie: {
-        maxAge: 15 * 60 * 1000,
+        maxAge: 60 * 1000 * 15,
       },
       store: new MongoStore({
         mongooseConnection: mongoose.connection,
