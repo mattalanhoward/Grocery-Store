@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const productModel = require("../models/product.model");
 const cartModel = require("../models/cart.model");
-const e = require("express");
+
+const sessionStore = require("./session.middleware");
 
 /************************************************/
 //        HTTP-GET-request: /shop
@@ -10,15 +11,15 @@ const e = require("express");
 //        Renders the SHOP page and displays all
 //        the products for shopping
 /************************************************/
-router.get("/", (req, res) => {
+router.get("/", sessionStore, (req, res) => {
   // console.log("shop requested.");
   // fetch all the products from DB
-  console.log(req.session);
-  if (!req.session) {
-    return res.render("shop/shop", {
-      erroeMessage: "Not authorozed to view the shop",
-    });
-  }
+  // console.log(req.session);
+  // if (!req.session) {
+  //   return res.render("shop/shop", {
+  //     erroeMessage: "Not authorozed to view the shop",
+  //   });
+  // }
   productModel
     .find()
     .then((productsFromDB) => {
@@ -40,7 +41,7 @@ router.get("/", (req, res) => {
 //        the products for shopping
 /************************************************/
 
-router.post("/:id", (req, res) => {
+router.post("/:id", sessionStore, (req, res) => {
   console.log(" add to cart clicked ...");
   console.log(" productID from req params: ", req.params.id);
   console.log(" userID from req session: ", req.session.currentUser._id);
@@ -141,6 +142,7 @@ router.post("/:id", (req, res) => {
     .then((newCartCreated) => {
       // then -2
       console.log("then-2 :  new cart record added .... ", newCartCreated);
+      res.redirect("/shop");
     })
     .catch((error) =>
       console.log("error while addidn products to cart ", error)
