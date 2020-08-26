@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
+mongoose.set("useFindAndModify", false);
+
 const cartSchema = new Schema(
   {
     // userId: {
     customerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user.model",
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     ordered: {
       type: Boolean,
@@ -21,8 +23,8 @@ const cartSchema = new Schema(
     products: [
       {
         productId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "product.model",
+          type: Schema.Types.ObjectId,
+          ref: "Products",
         },
         quantity: {
           type: Number,
@@ -46,5 +48,10 @@ const cartSchema = new Schema(
     timestamps: true,
   }
 );
+
+// methods :
+cartSchema.methods.findcustomerById = (id) => {
+  return this.customerId;
+};
 
 module.exports = model("Cart", cartSchema);
