@@ -22,10 +22,7 @@ router.get("/", sessionStore, (req, res) => {
     .populate({
       path: "products",
       populate: { path: "productId" },
-      //   select: "quantity",
     })
-    // .populate("products.productId._id")
-    // .populate("productId:")
     .then((productsInCart) => {
       console.log(" CART products: ");
       console.log(productsInCart);
@@ -46,6 +43,13 @@ router.get("/", sessionStore, (req, res) => {
       console.log("error while addidn products to cart ", error)
     );
 });
+
+/************************************************/
+//        HTTP-GET-request: /cart/removeProduct
+//
+//        Renders the CART page and displays all
+//        the products in the CART
+/************************************************/
 
 /********************************************** */
 // export

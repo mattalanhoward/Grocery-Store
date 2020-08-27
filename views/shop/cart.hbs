@@ -1,8 +1,43 @@
 welcome to cart page
 
-{{firstName}}
-{{#each products }}
-{{ quantity}}
-{{ productId.name}}
-{{ productId.price}}
-{{/each}}
+<br />
+
+
+Dear {{firstName}}{{lasttName}},
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products }}
+    <tr>
+      <th scope="row">1</th>
+      <td> {{ productId.name}} </td>
+      {{!-- <td> <input name="quantity" value={{quantity}} /> </td> --}}
+
+      <!-- Hi MATHEW, I am in dilemma whether to go for the DOM manipulation or send each request to server / -->
+      <td>
+        <div>
+          <a class="btn btn-primary" href='/cart/incProduct/{{productId.productId}}'> - </a>
+          {{ quantity}}
+          <a class="btn btn-primary" href='/cart/decProduct/{{productId.productId}}'> + </a>
+        </div>
+      </td>
+      <td>{{ productId.price}}</td>
+      <td> <input type="hidden" id="productId" name="productId" value={{ productId.productId}}> </td>
+      <td> <a class="btn btn-primary" href='/cart/remove/{{productId.productId}}'> Remove </a> </td>
+    </tr>
+
+    {{/each}}
+  </tbody>
+</table>
+
+<a class="btn btn-primary" href="/shop/"> Back to Shop </a>
+<a class="btn btn-primary" href="/cart/checkout"> Check Out</a>
