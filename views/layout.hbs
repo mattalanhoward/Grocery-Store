@@ -27,7 +27,7 @@
             <li class="nav-item"> <a class="nav-link" href="/">Home</a></li>
 
 
-            {{!-- {{#if currentUser}} --}}
+            {{#if currentUser}}
             <li class="nav-item"> <a class="nav-link" href="/edit-profile">Edit Profile</a></li>
             <li class="nav-item"> <a class="nav-link" href="/shop">Shop</a></li>
             <li class="nav-item dropdown">
@@ -39,15 +39,15 @@
               </ul>
             </li>
             <li class="nav-item"> <a class="nav-link" href="/cart">Cart</a></li>
-            {{!-- {{else}} --}}
+            {{else}}
             <li class="nav-item"> <a class="nav-link" href="/register">Register</a></li>
             <li class="nav-item"> <a class="nav-link" href="/login">Login</a></li>
-            {{!-- {{/if}} --}}
+            {{/if}}
 
 
-            {{!-- {{#if currentUser}} --}}
+            {{#if currentUser}}
             <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a></li>
-            {{!-- {{/if}} --}}
+            {{/if}}
           </ul>
         </div>
       </div>

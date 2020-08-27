@@ -15,17 +15,16 @@ router.get("/", sessionStore, (req, res) => {
   // console.log("shop requested.");
   // fetch all the products from DB
   // console.log(req.session);
-  // if (!req.session) {
-  //   return res.render("shop/shop", {
-  //     erroeMessage: "Not authorozed to view the shop",
-  //   });
-  // }
+
   productModel
     .find()
     .then((productsFromDB) => {
       console.log(" products list from DB ...");
       // console.log(productsFromDB);
-      res.render("shop/shop", { productsList: productsFromDB });
+      res.render("shop/shop", {
+        currentUser: req.session.currentUser,
+        productsList: productsFromDB,
+      });
     })
     .catch((error) =>
       res.render("shop/shop", {

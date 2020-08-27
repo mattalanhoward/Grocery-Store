@@ -27,7 +27,10 @@ router.get("/", sessionStore, (req, res) => {
     phoneNumber,
   } = req.session.currentUser;
   userModel.findOneAndUpdate(req.session.currentUser).then((userToEdit) => {
-    res.render("auth/edit-profile", userToEdit);
+    res.render("auth/edit-profile", {
+      currentUser: req.session.currentUser,
+      userToEdit,
+    });
   });
 });
 
@@ -54,6 +57,7 @@ router.post("/", sessionStore, (req, res, next) => {
     phoneNumber === ""
   ) {
     res.render("auth/edit-profile", {
+      currentUser: req.session.currentUser,
       errorMessage: "Please enter the mandatory fields",
     });
     return;
@@ -62,6 +66,7 @@ router.post("/", sessionStore, (req, res, next) => {
   // Check whether both passwords are matching
   if (password !== rePassword) {
     res.render("auth/edit-profile", {
+      currentUser: req.session.currentUser,
       errorMessage: "Both passwords are not same",
     });
     return;
@@ -70,6 +75,7 @@ router.post("/", sessionStore, (req, res, next) => {
   // Check for "Speacial characters in password"
   if (!regex.test(password)) {
     res.status(500).render("auth/edit-profile", {
+      currentUser: req.session.currentUser,
       errorMessage:
         "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });

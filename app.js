@@ -42,5 +42,6 @@ app.use("/login", require("./routes/login.routes"));
 
 app.use("/edit-profile", require("./routes/profile.routes"));
 app.use("/shop", require("./routes/shop.routes"));
+app.use("/cart", require("./routes/cart.routes"));
 
 module.exports = app;
