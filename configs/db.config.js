@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  // .connect(ONLINE_MONGO, {
+  //.connnect(ONLINE_MONGO, {
   .connect(process.env.MONGODB_URI, {
     // .connect(`mongodb://localhost/farm-grocery`, {
     useCreateIndex: true,
