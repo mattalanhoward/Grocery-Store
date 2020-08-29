@@ -12,19 +12,27 @@ const sessionStore = require("./session.middleware");
 //        the products for shopping
 /************************************************/
 router.get("/", sessionStore, (req, res) => {
-  // console.log("shop requested.");
   // fetch all the products from DB
-  // console.log(req.session);
-
   productModel
     .find()
     .then((productsFromDB) => {
-      console.log(" products list from DB ...");
-      // console.log(productsFromDB);
-      res.render("shop/shop", {
-        currentUser: req.session.currentUser,
-        productsList: productsFromDB,
-      });
+      // console.log(productsFromDB.length);
+      if (productsFromDB) {
+        // console.log(" products list from DB ...");
+        if (productsFromDB.length === 0) {
+          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+        }
+        res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          productsList: productsFromDB,
+        });
+      } else {
+        // console.log(req.session.currentUser);
+        return res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          errorMessage: "SHOP is Empty",
+        });
+      }
     })
     .catch((error) =>
       res.render("shop/shop", {
@@ -34,9 +42,9 @@ router.get("/", sessionStore, (req, res) => {
 });
 
 /************************************************/
-//        HTTP-GET-request: /shop
+//        HTTP-POST-request: /shop
 //
-//        Renders the SHOP page and displays all
+//        Adds the prodcuts to the shopping cart
 //        the products for shopping
 /************************************************/
 
@@ -53,8 +61,8 @@ router.post("/:id", sessionStore, (req, res) => {
     .find({ customerId: req.session.currentUser._id })
     .then((customerCarts) => {
       // then -1
-      console.log(" then -1 ", customerCarts);
-      console.log(customerCarts.length);
+      // console.log(" then -1 ", customerCarts);
+      // console.log(customerCarts.length);
       /** check whether any carts created for the client
        */
       if (customerCarts.length === 0) {
@@ -70,10 +78,10 @@ router.post("/:id", sessionStore, (req, res) => {
           const cusotmersOrderedCarts = customerCarts.filter(
             (eachCart) => eachCart.ordered
           );
-          console.log(
-            " carts of customer which were delivered : ",
-            cusotmersOrderedCarts
-          );
+          // console.log(
+          // " carts of customer which were delivered : ",
+          // cusotmersOrderedCarts
+          // );
           // Chek whether all the carts of customer are order-confirmed and delivered
           if (cusotmersOrderedCarts.length === customerCarts.length) {
             addNewCart = true;
@@ -82,18 +90,18 @@ router.post("/:id", sessionStore, (req, res) => {
             const customerUncheckedCart = customerCarts.filter(
               (eachCart) => !eachCart.ordered
             );
-            console.log(
-              "carts of customer which are NOT checked out : ",
-              customerUncheckedCart
-            );
-            console.log(customerUncheckedCart[0].products);
+            // console.log(
+            //   "carts of customer which are NOT checked out : ",
+            //   customerUncheckedCart
+            // );
+            // console.log(customerUncheckedCart[0].products);
             ProductsFromUncheckedCart = customerUncheckedCart[0].products.filter(
               (product) => product.productId == req.params.id
             );
-            console.log(
-              "Products from Unchecked-out-Cart:  ",
-              ProductsFromUncheckedCart
-            );
+            // console.log(
+            //   "Products from Unchecked-out-Cart:  ",
+            //   ProductsFromUncheckedCart
+            // );
 
             if (ProductsFromUncheckedCart.length === 0) {
               addNewProduct = true;
@@ -125,7 +133,7 @@ router.post("/:id", sessionStore, (req, res) => {
       //  Add a new product to the customer unchecked -out Cart.
       if (addNewProduct) {
         // add a new product to the product array
-        console.log(" Adding a new product to un-cheked-out cart");
+        // console.log(" Adding a new product to un-cheked-out cart");
         return cartModel.findOneAndUpdate(
           {
             $and: [
@@ -140,8 +148,12 @@ router.post("/:id", sessionStore, (req, res) => {
     })
     .then((newCartCreated) => {
       // then -2
-      console.log("then-2 :  new cart record added .... ", newCartCreated);
-      res.redirect("/shop");
+      // console.log("then-2 :  new cart record added .... ", newCartCreated);
+      if (newCartCreated) {
+        res.redirect("/shop");
+      } else {
+        res.render("/shop", { errorMessage: "Some network problem " }); // TODO: change this message
+      }
     })
     .catch((error) =>
       console.log("error while addidn products to cart ", error)

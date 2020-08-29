@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-  console.log('JS static file loaded :)');
-
-}, false);
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    console.log("JS static file loaded :)");
+  },
+  false
+);

@@ -86,9 +86,13 @@ router.post("/", (req, res) => {
       });
     })
     .then((resultfromDB) => {
-      console.log("User is successfully created.... ");
-      res.redirect("/");
-      // console.log(resultfromDB);
+      if (resultfromDB) {
+        console.log("User is successfully created.... ");
+        res.redirect("/");
+      } else {
+      }
+      //TODO:  change this message
+      res.render("auth/register", { errorMessage: " Error in the server " });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -101,7 +105,7 @@ router.post("/", (req, res) => {
             "An account is already registered with your email address",
         });
       } else {
-        console.log(error);
+        console.log(error); // TODO: Handle this case
       }
     });
 });

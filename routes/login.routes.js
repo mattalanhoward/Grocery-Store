@@ -33,7 +33,7 @@ router.post("/", (req, res, next) => {
   userModel
     .findOne({ email })
     .then((user) => {
-      console.log(user);
+      // console.log(user);
       if (!user) {
         res.render("auth/login", {
           errorMessage:
@@ -42,7 +42,7 @@ router.post("/", (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        console.log(req.session.currentUser);
+        // console.log(req.session.currentUser);
         // res.redirect(/"/");
         res.render("", { currentUser: req.session.currentUser });
       } else {

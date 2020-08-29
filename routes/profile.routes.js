@@ -26,14 +26,24 @@ router.get("/", sessionStore, (req, res) => {
     address,
     phoneNumber,
   } = req.session.currentUser;
-  userModel.findOneAndUpdate(req.session.currentUser).then((userToEdit) => {
-    res.render("auth/edit-profile", {
-      currentUser: req.session.currentUser,
-      userToEdit,
-    });
-  });
+  userModel
+    .findOneAndUpdate(req.session.currentUser)
+    .then((userToEdit) => {
+      res.render("auth/edit-profile", {
+        currentUser: req.session.currentUser,
+        userToEdit,
+      });
+    })
+    .catch((error) => next(error));
 });
 
+/************************************************/
+//        HTTP-POST-request: /edit-profile
+//
+//        -> Validates the edit-profile form
+//        ->  verifies the edit-profile details
+//         -> Redirects to home  page
+/************************************************/
 router.post("/", sessionStore, (req, res, next) => {
   console.log(req.body);
   const {
@@ -71,6 +81,7 @@ router.post("/", sessionStore, (req, res, next) => {
     });
     return;
   }
+
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   // Check for "Speacial characters in password"
   if (!regex.test(password)) {
@@ -121,4 +132,6 @@ router.post("/", sessionStore, (req, res, next) => {
     );
 });
 
+/********************************************** */
+// export
 module.exports = router;
