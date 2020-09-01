@@ -6,9 +6,27 @@
   margin: 100px 0;
 }
 
+h4{
+    font-size: 1rem;
+}
+
+.card{
+  min-height: 350px;
+}
+
+@media (min-width: 1024px)
+{
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+
 img{
   max-width: 100%;
 }
+
 #veg{
   width: 300px;
   height: auto;

@@ -53,7 +53,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cart">Cart</a>
+              <a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i></a>
             </li>
             {{else}}
             <li class="nav-item">
@@ -148,6 +148,7 @@ function initMap() {
   <!-- your script links -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
+
   <!---googlemaps --->
    <script>
 // Initialize and add the map
@@ -161,9 +162,10 @@ function initMap() {
   var marker = new google.maps.Marker({position: eiffel, map: map});
 }
     </script>
+
     <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFPlZ_jf3Mv_hxRtXxJo9vzwVgTBUemVs&callback=initMap">
-    </script>
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCSTO-u7Ki8BVjEamOCDfkKVNG8WANXTZU&q=Eiffel+Tower,Paris+France">
+  </script>
 </body>
 
 </html>

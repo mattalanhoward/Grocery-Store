@@ -16,9 +16,14 @@
       <div class="carousel-caption">
         <h1 class = "display-2 ">Healthy</h1>
         <h3>Fresh, Organic Produce</h3>
+        {{#if currentUser}}
+        <br>
+        <br>
+        {{else}}
         <a href="./register">
           <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
         </a>
+        {{/if}}
       </div>
     </div>
     <div class="carousel-item">
@@ -26,9 +31,14 @@
       <div class="carousel-caption d-none d-md-block">
         <h1 class = "display-2">Local</h1>
         <h3>From our Family to Yours</h3>
+                {{#if currentUser}}
+        <br>
+        <br>
+        {{else}}
         <a href="./register">
           <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
         </a>
+        {{/if}}
      </div>
     </div>
     <div class="carousel-item">
@@ -36,9 +46,14 @@
       <div class="carousel-caption d-none d-md-block">
         <h1 class = "display-2">FARM GROCER</h1>
         <h3>Good for you and for the Earth</h3>
+        {{#if currentUser}}
+          <br>
+          <br>
+        {{else}}
         <a href="./register">
           <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
         </a>
+        {{/if}}
       </div>
     </div>
   </div>
