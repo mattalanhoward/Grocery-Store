@@ -1,17 +1,15 @@
-welcome to cart page
-
-<br />
-
-
-
 {{#if infoMessage}}
 <p class="alert alert-success">{{infoMessage}}</p>
 {{/if}}
+
 {{#if errorMessage}}
 <p class="alert alert-danger">{{errorMessage}}</p>
 {{/if}}
 
+{{#if products}}
 
+welcome to cart page
+<br />
 Dear {{firstName}}{{lasttName}},
 
 <table class="table" id="customer-cart">
@@ -24,6 +22,7 @@ Dear {{firstName}}{{lasttName}},
       <th scope="col">Remove</th>
     </tr>
   </thead>
+
   <tbody>
     {{#each products }}
     <tr class="product">
@@ -32,55 +31,128 @@ Dear {{firstName}}{{lasttName}},
       {{!-- <td> <input name="quantity" value={{quantity}} /> </td> --}}
       <td>
         <div>
-          <a class="btn btn-primary" href='/cart/incProduct/{{productId.productId}}'> - </a>
+          {{!-- <a class="btn btn-primary" href='/cart/incProduct/{{productId.productId}}'> - </a> --}}
+          <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
+          </button>
           <span class="quantity"> {{ quantity}} </span>
-          {{!-- <a class="btn btn-primary" href='/cart/decProduct/{{productId.productId}}'> + </a> --}}
-          <button class="btn btn-primary" onclick={incQuantity("{{productId._id}}")}> + </button>
+          <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
         </div>
       </td>
-      <td>{{ productId.price}}</td>
+      <td>€ {{productId.price}}</td>
       <td> <input type="hidden" id="productId" name="productId" value={{productId._id}}> </td>
-      <td> <button class="btn btn-danger" onclick={deleteProduct("{{productId._id}}")}> Delete</button>
+      <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> Delete</button>
       </td>
     </tr>
-
     {{/each}}
+
   </tbody>
 </table>
+<button class="btn btn-primary" id="check-out" type="submit"> Check Out </button>
 
+{{/if}}
 <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
-<button class="btn btn-primary" type="submit"> Check Out </button>
 
+{{#if products}}
 <script>
-  /**
+
+  /**==========================================
   *  triggers when "delete" button is clicked 
+  * ==========================================
   */
   const deleteProduct = id => {
     //confirmation of deletion
-    console.log("DELETE PRODUCT CLICKED")
-    // console.log(id)
-    const urlId = `http://localhost:3000/cart/deleteProduct/${id}`;
-    console.log(urlId)
+    let confirmRes = confirm("Do you want to delete product from the cart ?");
+    if (confirmRes == false) {
+      return;
+    } else {
+      console.log("DELETE PRODUCT CLICKED")
+      // console.log(id)
+      const urlId = `http://localhost:3000/cart/deleteProduct/${id}`;
+      console.log(urlId)
 
-    axios
-      .delete(urlId)
-      .then(response => {
-        console.log(" response from server ");
-        console.log(response.data);
-      })
-      .catch(err => console.log(`Err while deleting product: ${err}`));
+      axios
+        .delete(urlId)
+        .then(response => {
+          console.log(" response from server ");
+          console.log(response.data);
+          console.log(response);
+          if (response.data.length === 0) {
+            console.log(" no products in cart ")
+            document.getElementById('customer-cart').textContent = "";
+            document.getElementById('check-out').style.display = 'none';
+
+          } else {
+            let productRow = "";
+            response.data.forEach(product => {
+              console.log(product);
+              productRow += `<tr class="product">
+                           <th scope="row">1</th>
+                           <td> ${product.name} </td>
+                           <td>
+                           <div>
+                          <button class="btn btn-primary decQty"  
+                              onclick=decQuantity("${product._id}",${product.quantity})> - </button>
+                          <span class="quantity"> ${product.quantity} </span>
+                          <button class="btn btn-primary incQty" onclick=incQuantity("${product._id}")> + </button>
+                        </div>
+                        </td>
+                        <td> € ${product.price} </td>
+                        <td> <input type="hidden" id="productId" name="productId" value="${product._id}"> </td>
+                        <td> <button class="btn btn-danger" onclick=deleteProduct("${product._id}")> Delete</button>
+                        </td>
+                        </tr>`;
+            });
+            document.querySelector('#customer-cart tbody').innerHTML = productRow;
+          }
+        })
+        .catch(err => console.log(`Err while deleting product: ${err}`));
+    }
+
   };
 
-  /**
+  /** ==========================================
   *  triggers when "+" button is clicked  for quantity
+  * ==========================================
   */
   const incQuantity = id => {
     // increase the quantity
-    //  console.log("INCREASE PRODUCT  CLICKED")
-    // console.log(id)
-    const urlId = `http://localhost:3000/cart/incQty/${id}`;
-    //  console.log(urlId)
 
+    const urlId = `http://localhost:3000/cart/incQty/${id}`;
+    axios
+      .get(urlId)
+      .then(response => {
+        console.log(response);
+        console.log(response.data[0].quantity);
+        let allProducts = document.querySelectorAll('.product');
+        Array.from(allProducts).forEach(ele => {
+          console.log(ele.querySelector('input').value, ele.querySelector('span').textContent)
+          if (id == ele.querySelector('input').value) {
+
+            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
+            ele.querySelector('.quantity').textContent = response.data[0].quantity;
+          }
+
+        });
+      })
+      .catch(err => console.log(`Err while increasing product quantity: ${err}`));
+  };
+
+  /**==========================================
+  * 
+  *  triggers when "-" button is clicked  for quantity
+  * ==========================================
+   */
+  const decQuantity = (id, qty) => {
+    console.log(qty);
+    if (qty <= 1) {
+      alert("Minimum quantity should be 1 !!");
+      return;
+    }
+    // decreases the quantity
+    console.log("DECREASE PRODUCT  CLICKED")
+    // console.log(id)
+    const urlId = `http://localhost:3000/cart/decQty/${id}`;
+    console.log(urlId)
     axios
       .get(urlId)
       .then(response => {
@@ -92,18 +164,15 @@ Dear {{firstName}}{{lasttName}},
           if (id == ele.querySelector('input').value) {
 
             ele.querySelector('.quantity').textContent = response.data[0].quantity;
+            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
+            //but.setAttribute('onclick', 'my_function( " '+my_string+' " )');
           }
 
         });
-
-        // console.log(" response from server for increment quantity")
-        // console.log(response.data);
-        // console.log(response.data[0]);
-        //  console.log(response.data[0].quantity);
-        //  console.log(document.querySelector("#customer-cart .quantity"));
-
-
       })
-      .catch(err => console.log(`Err while increasing product quantity: ${err}`));
+      .catch(err => console.log(`Err while decreasing product quantity: ${err}`));
   };
+
 </script>
+
+{{/if}}

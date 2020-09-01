@@ -29,6 +29,7 @@ const cartSchema = new Schema(
         quantity: {
           type: Number,
           default: 1,
+          min: [1, "Invalid value for product quantity"],
         },
       },
     ],

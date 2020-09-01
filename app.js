@@ -7,6 +7,7 @@ const favicon = require("serve-favicon");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const hbs = require("hbs");
 
 const app = express();
 
@@ -27,8 +28,12 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
+hbs.registerHelper("checkQuantity", function (quantity) {
+  return quantity <= 1 ? true : false;
+});
+
 // default value for title local
-app.locals.title = "Farm Grocery";
+app.locals.title = "Farm Grocer";
 
 // const index = require('./routes/index');
 // app.use('/', index);
