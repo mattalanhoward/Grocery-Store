@@ -5,45 +5,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Boilerplate with bootstrap cdn</title>
+  <title>Farm Grocer</title>
   <!--Bootstrap css cdn-->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
   <!--Your css links-->
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <!--Font Awesome link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--Your css links-->
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+
 </head>
 
 <body>
 
-  <!-- main top menu => Navigation menu    -->
-  <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light mb-3 sticky-top" style="background-color: #95D6F2">
-      <div class="container">
-        <a class="navbar-brand" href="/">Farm Grocer</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+  <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light" style="background-color: #95D6F2">
+      <div class="container-fluid">
+        <a class="navbar-brand" id="logo" href="/"><img src="/images/logo1.png" alt="Farm Grocer Logo"></a>
+        <h1>Farm Grocer</h1>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"> <a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item active"> 
+              <a class="nav-link" href="/">Home</a>
+            </li>
 
-
+          {{!-- if user is logged in ==> display --}}
             {{#if currentUser}}
-            <li class="nav-item"> <a class="nav-link" href="/edit-profile">Edit Profile</a></li>
-            <li class="nav-item"> <a class="nav-link" href="/shop">Shop</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/edit-profile">Edit Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/shop">Shop</a>
+            </li>
             <li class="nav-item dropdown">
-              <a class="dropdown-toggle nav-link " data-toggle="dropdown" href="#">Categories </a>
+              <a class="dropdown-toggle nav-link " data-toggle="dropdown" href="#">Categories</a>
               <ul class="dropdown-menu">
-                <li class="nav-item"> <a class="nav-link dropdown-item" href="/categories/fruits">Fruits</a></li>
-                <li class="nav-item"> <a class="nav-link dropdown-item" href="/categories/vegetables">Vegetables</a>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item" href="/categories/fruits">Fruits</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item" href="/categories/vegetables">Vegetables</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item"> <a class="nav-link" href="/cart">Cart</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart">Cart</a>
+            </li>
             {{else}}
-            <li class="nav-item"> <a class="nav-link" href="/register">Register</a></li>
-            <li class="nav-item"> <a class="nav-link" href="/login">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
             {{/if}}
-
 
             {{#if currentUser}}
             <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a></li>
@@ -52,61 +71,69 @@
         </div>
       </div>
     </nav>
-  </div>
-  <!--End of Navigation menu  -->
+
+
 
   <!--  BODY   -->
-  <div class="container">
-
-
+  <div class="container-fluid">
     {{{body}}}
   </div>
 
 
+
   <!-- Footer -->
-  <footer class="page-footer font-small pt-4">
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column Left  -->
-        <div class="col-md-4 mt-md-0 mt-3">
-          <!-- Contact US  -->
-          <h5 class="text-uppercase">Contact Us </h5>
-          <p> Phone: 0687638972 </p>
-          <p> Address: Zandtong 15 , 5658AW, Eindhoven , Netherlands</p>
-          <p> Email: : madeupstore@gmail.com </p>
-        </div>
-        <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none pb-3">
-
-        <!-- Grid column middle - Google maps -->
-        <div class="col-md-4 mb-md-0 mb-3">
-          <h5 class="text-uppercase"> Find Us: </h5>
-          <div>
-            <!-- Google map  code -->
-          </div>
-        </div>
-
-        <!-- Grid column  About Us -->
-        <div class="col-md-4 mt-md-0 mt-3">
-          <!-- Contact US  -->
-          <h5 class="text-uppercase">About Us </h5>
-          <p> Sunitha and Matthew are currently studying Full Stack Web Development at Ironhack </p>
-        </div>
-      </div>
-      <!-- Grid row -->
+  <div class="container-fluid padding bg-light">
+  <div class="row text-center">
+    <div class="col-md-3 my-3">
+      {{!-- <img src="/images/logo1.png" alt="logo"> --}}
+      <h4>Contact</h4>
+      <hr class="light">
+      <p>555-555-5555</p>
+      <p>info@farmgrocer.com</p>
+      <p>123 Main Street Denver, CO</p>
+    </div>
+    <div class="col-md-3 my-3">
+      <h4>About Us</h4>
+      <hr class="light">
+      <a href="#">About our Store</a> <br>
+      <a href="#">About the Developers</a>  
+    </div>
+    <div class="col-md-3 my-3">
+      <h4>Hours</h4>
+      <hr class="light">
+      <p>Order Online Anytime</p>
+      <p>Customer Support</p>
+      <p>Monday - Friday</p>
+      <p>8:00 - 18:00</p>
+    </div>
+    <div class="col-md-3 my-3">
+      <h4>Find Us</h4>
+      <hr class="light">
+      <div id="map"></div>
     </div>
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://mdbootstrap.com/"> Mathew and Sunitha </a>
-    </div>
-    <!-- Copyright -->
 
-  </footer>
-  <!-- Footer -->
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+</script>
+    </div>
+  </div>
+  </div>
   <!--End of Footer    -->
+
+
+
+
+
 
   <!--Bootstrap js cdn links-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -121,6 +148,22 @@
   <!-- your script links -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
+  <!---googlemaps --->
+   <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Eiffel Tower 48.8584° N, 2.2945° E
+  var eiffel = {lat: 48.8584, lng: 2.2945};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: eiffel});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: eiffel, map: map});
+}
+    </script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFPlZ_jf3Mv_hxRtXxJo9vzwVgTBUemVs&callback=initMap">
+    </script>
 </body>
 
 </html>

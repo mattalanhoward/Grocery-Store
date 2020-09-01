@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  //.connnect(ONLINE_MONGO, {
-  .connect(process.env.MONGODB_URI, {
-    // .connect(`mongodb://localhost/farm-grocery`, {
+  .connect(`${process.env.MONGODB_URI}`, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

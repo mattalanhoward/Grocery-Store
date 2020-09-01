@@ -1,14 +1,21 @@
-Welcome to Farm Grocer
+<div class="container my-5">
+  <div class="card-columns p-3">
+    {{#each productsList}}
+    <div class="card light-blue p-3">
+      <div class="card-body text-center">
+        
+        <form action="/shop/{{_id}}" method="POST">
+          <h4> {{name}} </h4>
+          <img class="rounded" src={{imageUrl}}>
+          <h5 class="m-1">${{price}}</h5>
+          <button class="bg-light border border-secondary p-2 rounded"type="submit">Add To cart</button>
+        </form>
 
-{{#each productsList}}
-<form action="/shop/{{_id}}" method="POST">
-  <p> {{name}} </p>
-  <img src={{imageUrl}}>
-  <p>{{price}}</p>
-  <button type="submit"> Add To cart </button>
-</form>
-
+      </div>
+    </div>
 {{/each}}
+  </div>
+</div>
 
 
 {{#if errorMessage}}
