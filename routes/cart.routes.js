@@ -32,7 +32,7 @@ router.get("/", sessionStore, (req, res) => {
       if (productsInCart) {
         console.log(productsInCart);
         const {
-          customerId: { firstName, lasttName },
+          customerId: { firstName, lastName },
           products: [...products],
         } = productsInCart;
         if (products.length === 0) {
@@ -45,7 +45,7 @@ router.get("/", sessionStore, (req, res) => {
         res.render("shop/cart", {
           currentUser: req.session.currentUser,
           firstName,
-          lasttName,
+          lastName,
           products,
         });
       } else {

@@ -8,14 +8,13 @@
 
 {{#if products}}
 
-welcome to cart page
-<br />
-Dear {{firstName}}{{lasttName}},
+<div class="m-2">
+  {{firstName}} {{lastName}}'s Cart
+</div>
 
 <table class="table" id="customer-cart">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Product</th>
       <th scope="col">Quantity</th>
       <th scope="col">Cost</th>
@@ -26,7 +25,7 @@ Dear {{firstName}}{{lasttName}},
   <tbody>
     {{#each products }}
     <tr class="product">
-      <th scope="row">1</th>
+      <th scope="row">{{@index}}</th>
       <td> {{ productId.name}} </td>
       {{!-- <td> <input name="quantity" value={{quantity}} /> </td> --}}
       <td>
