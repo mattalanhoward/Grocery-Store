@@ -121,18 +121,19 @@
 
       <br />
 
-      <script>
-        // Initialize and add the map
-        function initMap() {
-          // The location of Uluru
-          var uluru = { lat: -25.344, lng: 131.036 };
-          // The map, centered at Uluru
-          var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 4, center: uluru });
-          // The marker, positioned at Uluru
-          var marker = new google.maps.Marker({ position: uluru, map: map });
-        }
-      </script>
+ <!---googlemaps --->
+   <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Eiffel Tower 48.8584° N, 2.2945° E
+  var eiffel = {lat: 48.8584, lng: 2.2945};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 5, center: eiffel});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: eiffel, map: map});
+}
+    </script>
     </div>
   </div>
   </div>
@@ -157,22 +158,21 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
 
-  <!---googlemaps --->
-  <script>
-    // Initialize and add the map
-    function initMap() {
-      // The location of Eiffel Tower 48.8584° N, 2.2945° E
-      var eiffel = { lat: 48.8584, lng: 2.2945 };
-      // The map, centered at Uluru
-      var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 4, center: eiffel });
-      // The marker, positioned at Uluru
-      var marker = new google.maps.Marker({ position: eiffel, map: map });
-    }
-  </script>
-
-  <script defer
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCSTO-u7Ki8BVjEamOCDfkKVNG8WANXTZU&q=Eiffel+Tower,Paris+France">
+ <!---googlemaps --->
+   <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Eiffel Tower 48.8584° N, 2.2945° E
+  var eiffel = {lat: 48.8584, lng: 2.2945};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: eiffel});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: eiffel, map: map});
+}
+    </script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSTO-u7Ki8BVjEamOCDfkKVNG8WANXTZU&callback=initMap">
     </script>
 </body>
 
