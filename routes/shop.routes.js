@@ -20,7 +20,10 @@ router.get("/", sessionStore, (req, res) => {
       if (productsFromDB) {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
-          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+          return res.render("shop/shop", {
+            currentUser: req.session.currentUser,
+            errorMessage: "SHOP is Empty",
+          });
         }
         res.render("shop/shop", {
           currentUser: req.session.currentUser,
@@ -56,7 +59,10 @@ router.get("/fruits", sessionStore, (req, res) => {
       if (productsFromDB) {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
-          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+          return res.render("shop/shop", {
+            currentUser: req.session.currentUser,
+            errorMessage: "There are no fruits in the SHOP",
+          });
         }
         res.render("shop/shop", {
           currentUser: req.session.currentUser,
@@ -66,33 +72,36 @@ router.get("/fruits", sessionStore, (req, res) => {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
           currentUser: req.session.currentUser,
-          errorMessage: "SHOP is Empty",
+          errorMessage: "There are no fruits in the SHOP",
         });
       }
     })
     .catch((error) =>
       res.render("shop/shop", {
-        erroeMessage: "Not authorozed to view the shop" + error,
+        erroeMessage: "Not authorozed to view the Fruits page" + error,
       })
     );
 });
 
 /************************************************/
-//        HTTP-GET-request: /categories/fruits
+//        HTTP-GET-request: /categories/vegetables
 //
 //        Renders the SHOP page and displays all
 //        the products for shopping
 /************************************************/
-router.get("/fruits", sessionStore, (req, res) => {
+router.get("/vegetables", sessionStore, (req, res) => {
   // fetch all the products from DB
   productModel
-    .find({ category: "fruits" })
+    .find({ category: "vegetables" })
     .then((productsFromDB) => {
       // console.log(productsFromDB.length);
       if (productsFromDB) {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
-          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+          return res.render("shop/shop", {
+            currentUser: req.session.currentUser,
+            errorMessage: "There are no vegetables in the SHOP",
+          });
         }
         res.render("shop/shop", {
           currentUser: req.session.currentUser,
@@ -102,13 +111,91 @@ router.get("/fruits", sessionStore, (req, res) => {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
           currentUser: req.session.currentUser,
-          errorMessage: "SHOP is Empty",
+          errorMessage: "There are no vegetables in the SHOP",
         });
       }
     })
     .catch((error) =>
       res.render("shop/shop", {
-        erroeMessage: "Not authorozed to view the shop" + error,
+        erroeMessage: "Not authorozed to view the vegetables page" + error,
+      })
+    );
+});
+
+/************************************************/
+//        HTTP-GET-request: /categories/breads
+//
+//        Renders the SHOP page and displays all
+//        the breads for shopping
+/************************************************/
+router.get("/breads", sessionStore, (req, res) => {
+  // fetch all the products from DB
+  productModel
+    .find({ category: "breads" })
+    .then((productsFromDB) => {
+      // console.log(productsFromDB.length);
+      if (productsFromDB) {
+        // console.log(" products list from DB ...");
+        if (productsFromDB.length === 0) {
+          return res.render("shop/shop", {
+            currentUser: req.session.currentUser,
+            errorMessage: "There are no breads in the SHOP",
+          });
+        }
+        res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          productsList: productsFromDB,
+        });
+      } else {
+        console.log(req.session.currentUser);
+        return res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          errorMessage: "There are no breads in the SHOP",
+        });
+      }
+    })
+    .catch((error) =>
+      res.render("shop/shop", {
+        erroeMessage: "Not authorozed to view the breads page" + error,
+      })
+    );
+});
+
+/************************************************/
+//        HTTP-GET-request: /categories/meat
+//
+//        Renders the SHOP page and displays all
+//        the meat for shopping
+/************************************************/
+router.get("/meat", sessionStore, (req, res) => {
+  // fetch all the products from DB
+  productModel
+    .find({ category: "meat" })
+    .then((productsFromDB) => {
+      // console.log(productsFromDB.length);
+      if (productsFromDB) {
+        // console.log(" products list from DB ...");
+        if (productsFromDB.length === 0) {
+          return res.render("shop/shop", {
+            currentUser: req.session.currentUser,
+            errorMessage: "There are no meat products in the SHOP",
+          });
+        }
+        res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          productsList: productsFromDB,
+        });
+      } else {
+        // console.log(req.session.currentUser);
+        return res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          errorMessage: "There are no meat products in the SHOP",
+        });
+      }
+    })
+    .catch((error) =>
+      res.render("shop/shop", {
+        erroeMessage: "Not authorozed to view the meat page" + error,
       })
     );
 });
@@ -122,8 +209,23 @@ router.get("/fruits", sessionStore, (req, res) => {
 
 router.post("/:id", sessionStore, (req, res) => {
   console.log(" add to cart clicked ...");
-  console.log(" productID from req params: ", req.params.id);
-  console.log(" userID from req session: ", req.session.currentUser._id);
+  console.log(" productID from req params: ", req.params);
+  // console.log(" userID from req session: ", req.session.currentUser._id);
+  console.log(req.headers.referer);
+  const reqUri = req.headers.referer;
+  let redirectUri = "";
+
+  if (reqUri.includes("fruits")) {
+    redirectUri = "/categories/fruits";
+  } else if (reqUri.includes("vegetables")) {
+    redirectUri = "/categories/vegetables";
+  } else if (reqUri.includes("breads")) {
+    redirectUri = "/categories/breads";
+  } else if (reqUri.includes("meat")) {
+    redirectUri = "/categories/meat";
+  } else {
+    redirectUri = "/shop";
+  }
 
   /********************* */
   let addNewCart = false;
@@ -222,27 +324,14 @@ router.post("/:id", sessionStore, (req, res) => {
       // then -2
       // console.log("then-2 :  new cart record added .... ", newCartCreated);
       if (newCartCreated) {
-        res.redirect("/shop");
+        res.redirect(redirectUri);
       } else {
-        res.render("/shop", { errorMessage: "Some network problem " }); // TODO: change this message
+        res.render(redirectUri, { errorMessage: "Some network problem " }); // TODO: change this message
       }
     })
     .catch((error) =>
       console.log("error while addidn products to cart ", error)
     );
-  /********************* */
-  // let cartProduct = new cartModel({ customerId: req.session.currentUser._id });
-  // cartProduct.products.push({ productId: req.params.id });
-
-  // cartProduct
-  //   .save()
-  //   .then((productFromDB) => {
-  //     // console.log(productFromDB);
-  //     res.redirect("/shop");
-  //   })
-  //   .catch((error) => {
-  //     console.log(" error while adding product to cart", error);
-  //   });
 });
 
 /********************************************** */
