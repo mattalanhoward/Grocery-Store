@@ -1,4 +1,66 @@
-Dear Customer,
+<div class="m-2">
+  Dear {{firstName}} {{lastName}},
+  <h2> Thank you for using our "Farm Grocer"</h2>
+  <h4> Your order will be delivered within 24 hours</h4>
+</div>
 
-Thank you for using our "Farm Grocer".
-Your order will be delivered within 24 hours.
+<div class="m-2">
+  <h2>ORDER SUMMARY</h2>
+</div>
+
+
+<table class="table container-fluid" id="checkout-cart">
+  <tbody>
+    {{#each products }}
+    <tr class="product">
+      <td>
+        <div> <img class="rounded" src={{productId.imageUrl}}>
+        </div>
+      </td>
+      <td>
+        <div>
+          <p> {{ productId.name}} </p>
+          <p> <span class="qty"> {{ quantity}} </span> X
+            €<span class="price">{{productId.price}}</span>
+            =<span class="subtot"> </span></p>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<hr>
+<tfoot>
+  <div>
+    <p>Grand Total </p>
+    <p id="grand-tot"> </p>
+  </div>
+</tfoot>
+
+
+<script>
+  window.onload = function () {
+    calCheckOutBill();
+  }
+
+  /*
+  * to calculate the grand total and subtotal 
+  */
+  const calCheckOutBill = function () {
+    let subtotal = 0;
+    let grandTot = 0;
+    const elements = document.querySelectorAll("#checkout-cart tbody .product")
+    elements.forEach(ele => {
+      let qty = ele.getElementsByClassName("qty")[0].innerText;
+      let price = ele.getElementsByClassName("price")[0].innerText;
+      subtotal = (qty * price);
+      console.log(`SUBTOTAL ${subtotal}`);
+      ele.getElementsByClassName("subtot")[0].innerText = subtotal.toFixed(2);
+
+      grandTot += subtotal;
+    });
+    document.getElementById("grand-tot").innerText = grandTot;
+  }
+
+</script>

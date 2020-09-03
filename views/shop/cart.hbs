@@ -9,7 +9,7 @@
 {{#if products}}
 
 <div class="m-2">
-  {{firstName}} {{lastName}}'s Cart
+  {{!-- {{firstName}} {{lastName}}'s Cart --}}
 </div>
 
 <table class="table container-fluid" id="customer-cart">
@@ -27,10 +27,8 @@
     {{#each products }}
     <tr class="product">
       <td> {{ productId.name}} </td>
-      {{!-- <td> <input name="quantity" value={{quantity}} /> </td> --}}
       <td>
         <div>
-          {{!-- <a class="btn btn-primary" href='/cart/incProduct/{{productId.productId}}'> - </a> --}}
           <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
           </button>
           <span class="quantity"> {{ quantity}} </span>
@@ -38,7 +36,7 @@
         </div>
       </td>
       <td>€ <span class="price">{{productId.price}}</span></td>
-      <td> <span id="subtotal">111</span></td>
+      <td> <span class="subtotal"> </span></td>
       <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
         <input type="hidden" id="productId" name="productId" value={{productId._id}}>
       </td>
@@ -76,11 +74,9 @@
     if (confirmRes == false) {
       return;
     } else {
-      console.log("DELETE PRODUCT CLICKED")
-      // console.log(id)
-      const urlId = `http://localhost:3000/cart/deleteProduct/${id}`;
-      console.log(urlId)
 
+      let urlId = `{{envUrl}}/cart/deleteProduct/${id}`;
+      console.log(urlId);
       axios
         .delete(urlId)
         .then(response => {
@@ -107,7 +103,7 @@
                         </div>
                         </td>
                         <td> € <span class="price"> ${product.price}  </span> </td>
-                        <td> <span id="subtotal">111</span></td>
+                        <td> <span class="subtotal"> </span></td>
                         <td>  <button class="btn btn-danger" onclick=deleteProduct("${product._id}")> X </button>
                               <input type="hidden" id="productId" name="productId" value="${product._id}">                       
                         </td>
@@ -127,23 +123,18 @@
   * ==========================================
   */
   const incQuantity = id => {
-    // increase the quantity
 
-    const urlId = `http://localhost:3000/cart/incQty/${id}`;
+    //const urlId = `http://localhost:3000/cart/incQty/${id}`;
+    const urlId = `{{envUrl}}/cart/incQty/${id}`;
     axios
       .get(urlId)
       .then(response => {
-        console.log(response);
-        console.log(response.data[0].quantity);
         let allProducts = document.querySelectorAll('.product');
         Array.from(allProducts).forEach(ele => {
-          console.log(ele.querySelector('input').value, ele.querySelector('span').textContent)
           if (id == ele.querySelector('input').value) {
-
             ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
             ele.querySelector('.quantity').textContent = response.data[0].quantity;
           }
-
         });
         calculateBill();
         calcSubtotal();
@@ -157,43 +148,31 @@
   *  calculates the total cost of the cart items: 
   * ==========================================
    */
-
-
   const calculateBill = () => {
-    console.log(" calculateBill  called ---- ");
     let totalCost = 0;
     document.querySelectorAll("#customer-cart tbody .product").forEach(ele => {
       const qty = ele.getElementsByClassName("quantity")[0].innerText;
       const price = ele.getElementsByClassName("price")[0].innerText;
       totalCost += (qty * price);
     });
-    console.log(totalCost);
     document.getElementById("total").innerText = totalCost.toFixed(2);
 
   }
 
-    /**==========================================
-  * 
-  *  calculates the subtotal of each product in the cart: 
-  * ==========================================
-   */
-
-
+  /**==========================================
+* 
+*  calculates the subtotal of each product in the cart: 
+* ==========================================
+ */
   const calcSubtotal = () => {
-    console.log(" calcSubtotal  called ---- ");
     let subtotal = 0;
-      const elements = document.querySelectorAll("#customer-cart tbody .product")
-      elements.forEach(ele => {
+    const elements = document.querySelectorAll("#customer-cart tbody .product")
+    elements.forEach(ele => {
       let qty = ele.getElementsByClassName("quantity")[0].innerText;
-      console.log(qty)
       let price = ele.getElementsByClassName("price")[0].innerText;
-      console.log(price)
       subtotal = (qty * price);
-      console.log(`SUBTOTAL ${subtotal}`)
-      let sub = document.getElementById("subtotal").innerText
-      console.log(`SUB ${sub}`)
-
-    })    
+      ele.getElementsByClassName("subtotal")[0].innerText = subtotal;
+    })
   }
 
 
@@ -210,25 +189,21 @@
     }
     // decreases the quantity
 
-    const urlId = `http://localhost:3000/cart/decQty/${id}`;
-    console.log(urlId)
+    // const urlId = `http://localhost:3000/cart/decQty/${id}`;
+    const urlId = `{{envUrl}}/cart/decQty/${id}`;
     axios
       .get(urlId)
       .then(response => {
-        console.log(response);
-        console.log(response.data[0].quantity);
         let allProducts = document.querySelectorAll('.product');
         Array.from(allProducts).forEach(ele => {
-          //console.log(ele.querySelector('input').value, ele.querySelector('span').textContent)
           if (id == ele.querySelector('input').value) {
             ele.querySelector('.quantity').textContent = response.data[0].quantity;
             ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
           }
-
         });
         calculateBill();
         calcSubtotal();
-        
+
       })
       .catch(err => console.log(`Error while decreasing product quantity: ${err}`));
   };

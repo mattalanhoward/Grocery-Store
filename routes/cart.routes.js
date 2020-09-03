@@ -5,7 +5,7 @@ const productModel = require("../models/product.model");
 const cartModel = require("../models/cart.model");
 
 const sessionStore = require("./session.middleware");
-
+const sendEmail = require("../configs/email");
 /************************************************/
 //        HTTP-GET-request: /cart
 //
@@ -38,12 +38,13 @@ router.get("/", sessionStore, (req, res) => {
         } = productsInCart;
         if (products.length === 0) {
           return res.render("shop/cart", {
-            env: process.env.URL,
+            envUrl: process.env.URL,
             currentUser: req.session.currentUser,
             infoMessage: "Cart is Empty",
           });
         }
         res.render("shop/cart", {
+          envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           cartId,
           firstName,
@@ -53,7 +54,7 @@ router.get("/", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
-          env: process.env.URL,
+          envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           infoMessage: "Cart is Empty",
         }); // TODO: change tis message
@@ -99,6 +100,7 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
+          envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           errorMessage: "Error while updating the quantity of the product ",
         }); // TODO: change this message
@@ -107,6 +109,7 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
     .catch((error) => {
       // console.log("error while updating the quantity of the product", error);
       return res.render("shop/cart", {
+        envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         errorMessage:
           "Error while updating the quantity of the product " + error,
@@ -148,6 +151,7 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
+          envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           errorMessage:
             "Error while updating the quantity of the product " + error,
@@ -157,6 +161,7 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
     .catch((error) => {
       // console.log("error while updating the quantity of the product", error);
       return res.render("shop/cart", {
+        envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         errorMessage:
           "Error while updating the quantity of the product " + error,
@@ -219,6 +224,7 @@ router.delete("/deleteProduct/:id", sessionStore, (req, res) => {
       if (!populatedProductInfo) {
         // HOW to handle this case :
         return res.render("shop/cart", {
+          envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           infoMessage: "Error while deleting the product" + error,
         });
@@ -239,6 +245,7 @@ router.delete("/deleteProduct/:id", sessionStore, (req, res) => {
     })
     .catch((error) => {
       return res.render("shop/cart", {
+        envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         infoMessage: "Error while deleting the product" + error,
       });
@@ -256,7 +263,11 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
   // console.log(req.params.cartid);
 
   cartModel
-    .findByIdAndUpdate(req.params.cartid, { ordered: true }, { new: true })
+    .findByIdAndUpdate(
+      req.params.cartid,
+      { $set: { purchaseDate: new Date(), ordered: true } },
+      { new: true }
+    )
     .then((updatedRecord) => {
       // console.log("updated the ordered to true");
       // console.log(updatedRecord);
@@ -271,16 +282,28 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
     })
     .then((populatedResult) => {
       console.log(" result for placing order");
-      console.log(populatedResult);
+
       // SEND EMAIL
-      return res.render("shop/checkout", {
-        env: process.env.URL,
+      // sendEmail.sendWelcomeEmail(populatedResult);
+      const {
+        _id: cartId,
+        customerId: { firstName, lastName },
+        products: [...products],
+      } = populatedResult;
+
+      console.log(products);
+      res.render("shop/checkout", {
+        envUrl: process.env.URL,
         currentUser: req.session.currentUser,
-        checkOutInfo: populatedResult,
+        cartId,
+        firstName,
+        lastName,
+        products,
       });
     })
     .catch((error) => {
       return res.render("shop/cart", {
+        envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         infoMessage: "Error while placing order" + error,
       });
