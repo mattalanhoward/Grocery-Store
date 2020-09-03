@@ -8,9 +8,9 @@
 
 {{#if products}}
 
-<div class="m-2">
-  {{!-- {{firstName}} {{lastName}}'s Cart --}}
-</div>
+{{!-- <div class="m-2">
+  {{firstName}}'s Cart
+</div> --}}
 
 <table class="table container-fluid" id="customer-cart">
   <thead class="thead-light">
@@ -44,19 +44,25 @@
     {{/each}}
 
   </tbody>
+ 
   <tfoot onload="calculateBill">
     <tr>
-      <th colspan="3">Total :</th>
+      <td>Total :</td>
+      <td></td>
+      <td></td>
       <td>€ <span id="total"> </span></td>
+      <td></td>
     </tr>
   </tfoot>
 </table>
 
+<div class="text-center m-3">
 <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
 {{/if}}
 <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
 
 {{#if products}}
+</div>
 <script>
 
   window.onload = function () {
@@ -172,7 +178,7 @@
       let price = ele.getElementsByClassName("price")[0].innerText;
       subtotal = (qty * price);
       console.log(`SUBTOTAL ${subtotal}`)
-      ele.getElementsByClassName("subtotal")[0].innerText = subtotal.toFixed(2)
+      ele.getElementsByClassName("subtotal")[0].innerText = `€ ${subtotal.toFixed(2)}`
 
     })
   }
