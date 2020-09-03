@@ -42,6 +42,78 @@ router.get("/", sessionStore, (req, res) => {
 });
 
 /************************************************/
+//        HTTP-GET-request: /categories/vegetables
+//
+//        Renders the SHOP page and displays all
+//        the products for shopping
+/************************************************/
+router.get("/fruits", sessionStore, (req, res) => {
+  // fetch all the products from DB
+  productModel
+    .find({ category: "fruits" })
+    .then((productsFromDB) => {
+      // console.log(productsFromDB.length);
+      if (productsFromDB) {
+        // console.log(" products list from DB ...");
+        if (productsFromDB.length === 0) {
+          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+        }
+        res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          productsList: productsFromDB,
+        });
+      } else {
+        // console.log(req.session.currentUser);
+        return res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          errorMessage: "SHOP is Empty",
+        });
+      }
+    })
+    .catch((error) =>
+      res.render("shop/shop", {
+        erroeMessage: "Not authorozed to view the shop" + error,
+      })
+    );
+});
+
+/************************************************/
+//        HTTP-GET-request: /categories/fruits
+//
+//        Renders the SHOP page and displays all
+//        the products for shopping
+/************************************************/
+router.get("/fruits", sessionStore, (req, res) => {
+  // fetch all the products from DB
+  productModel
+    .find({ category: "fruits" })
+    .then((productsFromDB) => {
+      // console.log(productsFromDB.length);
+      if (productsFromDB) {
+        // console.log(" products list from DB ...");
+        if (productsFromDB.length === 0) {
+          return res.render("shop/shop", { errorMessage: "SHOP is Empty" });
+        }
+        res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          productsList: productsFromDB,
+        });
+      } else {
+        // console.log(req.session.currentUser);
+        return res.render("shop/shop", {
+          currentUser: req.session.currentUser,
+          errorMessage: "SHOP is Empty",
+        });
+      }
+    })
+    .catch((error) =>
+      res.render("shop/shop", {
+        erroeMessage: "Not authorozed to view the shop" + error,
+      })
+    );
+});
+
+/************************************************/
 //        HTTP-POST-request: /shop
 //
 //        Adds the prodcuts to the shopping cart
