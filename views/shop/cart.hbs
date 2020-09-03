@@ -36,7 +36,7 @@
         </div>
       </td>
       <td>€ <span class="price">{{productId.price}}</span></td>
-      <td> <span class="subtotal"> </span></td>
+      <td> <span class="subtotal"></span></td>
       <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
         <input type="hidden" id="productId" name="productId" value={{productId._id}}>
       </td>
@@ -171,7 +171,9 @@
       let qty = ele.getElementsByClassName("quantity")[0].innerText;
       let price = ele.getElementsByClassName("price")[0].innerText;
       subtotal = (qty * price);
-      ele.getElementsByClassName("subtotal")[0].innerText = subtotal;
+      console.log(`SUBTOTAL ${subtotal}`)
+      ele.getElementsByClassName("subtotal")[0].innerText = subtotal.toFixed(2)
+
     })
   }
 

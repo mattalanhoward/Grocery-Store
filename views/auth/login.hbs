@@ -1,35 +1,35 @@
 <div class="container-fluid register">
     <form class="login-container" action="/login" method="POST">
 
-        <div id="login-inputs" class="bg light-blue p-3 rounded">
+        <div id="login-inputs" class="bg light-brown p-3 rounded">
             <h1 class="text-center p-3"> Login </h1>
             <!--- email-Id --->
             <div class="form-group row">
-                <div class="col-sm-3"></div>
-                <label class="col-sm-2" for="email">Email</label>
-                <div class="col-sm-4">
+                <div class="col-md-3"></div>
+                <label class="col-md-2" for="email">Email</label>
+                <div class="col-md-4">
                     <input class="form-control" type="text" name="email" placeholder="Enter Email">
                 </div>
-                <div class="col-sm-3"></div>
+                <div class="col-md-3"></div>
             </div>
 
 
             <!--- password --->
             <div class="form-group row ">
-                <div class="col-sm-3"></div>
-                <label class="col-sm-2" for="password">Password</label>
-                <div class="col-sm-4">
+                <div class="col-md-3"></div>
+                <label class="col-md-2" for="password">Password</label>
+                <div class="col-md-4">
                     <input class="form-control" type="password" name="password" placeholder="Enter Password">
                 </div>
-                <div class="col-sm-3"></div>
+                <div class="col-md-3"></div>
             </div>
 
 
             <!--- button --->
             <div class="form-group row">
-                <div class="col-sm-5"></div>
-                <button class="col-sm-2 btn btn-primary m-3" type="submit">Login</button>
-                <div class="col-sm-5"></div>
+                <div class="col-md-5"></div>
+                <button class="col-md-2 btn btn-primary m-3" type="submit">Login</button>
+                <div class="col-md-5"></div>
             </div>
 
             {{#if errorMessage}}

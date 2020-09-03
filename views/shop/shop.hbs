@@ -1,21 +1,26 @@
-<div class="container my-5">
-  <div class="card-columns p-3">
+
+<div class="card-container my-3">
+  <h1 class="text-center">Welcome to the Shop</h1>
+  <hr>
+  <div class="p-3">
     {{#each productsList}}
-    <div class="card light-blue p-3">
+    <div class="card light-brown p-3">
       <div class="card-body text-center">
         
         <form action="/shop/{{_id}}" method="POST">
           <h4> {{name}} </h4>
           <img class="rounded" src={{imageUrl}}>
           <h5 class="m-1">${{price}}</h5>
-          <button class="bg-light border border-secondary p-2 rounded"type="submit">Add To cart</button>
+          <button class="btn-primary p-2 rounded"type="submit">Add To cart</button>
         </form>
 
       </div>
     </div>
 {{/each}}
   </div>
+  <hr>
 </div>
+
 
 
 {{#if errorMessage}}

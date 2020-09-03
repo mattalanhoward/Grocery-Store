@@ -1,4 +1,100 @@
-  <form  action="/edit-profile" method="POST">
+  {{!--views/auth/signup.hbs --}}
+<div class="register container-fluid">
+  <form  class="login-container" action="/edit-profile" method="POST">
+
+  <div id="input-container" class="bg light-brown p-3 rounded">
+    <h3 class="text-center p-3"> Edit Profile </h3>
+    <!-- First Name -->
+    <div class="form-group row">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="firstname">First Name</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" name="firstname" value="{{firstName}}">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="lastname">Last Name</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" name="lastname" value="{{lastName}}">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+    <!-- EmailID -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="email">E-mail Address</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" name="email" value="{{email}}">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+    <!-- Password  -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="password">Password</label>
+      <div class="col-md-4">
+        <input class="form-control" type="password" name="password" placeholder="enter new password">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+    <!-- retype password  -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="rePassword">Retype Password</label>
+      <div class="col-md-4">
+        <input class="form-control" type="password" name="rePassword" placeholder="retype new password">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+    <!-- Address -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="address">Address</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text-area" name="address" value="{{address}}">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+    <!-- Phone number -->
+    <div class="form-group row ">
+      <div class="col-md-3"></div>
+        <label class="col-md-2" for="phone">Phone Number</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" name="phone" value="{{phoneNumber}}">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+          
+    <!--- button --->      
+    <div class="form-group row">
+      <div class="col-md-5"></div>
+      <button type="submit" class="btn btn-primary col-md-2 m-3">Update User Info</button>
+      <div class="col-md-5"></div>
+    </div>
+
+    {{#if errorMessage}}
+    <p class="alert alert-danger text-center">{{errorMessage}}</p>
+    {{/if}}
+
+  </div>
+  </form>
+</div>
+  
+  {{!-- <form  action="/edit-profile" method="POST">
 
     <h1 class="text-center p-3"> Edit Profile </h1>
 
@@ -102,4 +198,4 @@
     {{/if}}
 
   </div>
-  </form>
+  </form> --}}
