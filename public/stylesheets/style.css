@@ -10,20 +10,34 @@ h4 {
   font-size: 1rem;
 }
 
-.card {
-  min-height: 350px;
+.card-container{
+  border: 3px solid red;
+  display: flex;
+  justify-content: space-evenly;
+
+
 }
 
-@media (min-width: 1024px) {
-  .card-columns {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-  }
+.card {
+  width: 30%;
 }
 
 img {
   max-width: 100%;
+}
+
+.btn-primary{
+ /* background-color: rgb(81,32,4);
+ border: rgb(231, 197, 161) */
+ background-color: rgb(231, 197, 161);
+ border: 2px solid rgb(81,32,4);
+ color: black;
+}
+
+.btn-primary:hover{
+  background-color:rgb(81,32,4);
+  color: white;
+  border: 2px solid rgb(231, 197, 161);
 }
 
 #veg {
@@ -90,13 +104,41 @@ img {
   background-size: cover;
 }
 
-.light-blue {
+.light-brown {
   /* background-color: #b5d3e7;
   opacity: 0.9; */
   background-color: rgba(231, 197, 161, 0.9);
   /* background-color: rgba(227, 193, 148, 0.9); */
 
 }
+
+/*MEDIA QUERIES*/
+/*LAPTOP & Desktop*/ 
+@media (min-width: 992px) {
+  .card-columns {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+  .login-container{
+    width: 60%;
+  }
+}
+
+/*large Phone and Smaller*/
+@media (max-width: 576px) {
+
+  .login-container{
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+
+
+
+
+
 
 /*ANIMATIONS*/
 .tracking-in-expand {
@@ -232,11 +274,11 @@ img {
   }
 }
 
-#open-hours {
+/* #open-hours {
   background: url(../images/shopTiming.jpg);
   background-size: cover;
   padding-top: 10%;
   font-style: italic;
   width: 100%;
   height: auto;
-}
+} */
