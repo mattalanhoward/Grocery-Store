@@ -70,11 +70,11 @@ img {
   border: 2px solid rgb(231, 197, 161);
 }
 
-.btn-primary:focus{
-  background-color:rgb(81,32,4);
+.btn-primary:focus {
+  background-color: rgb(81, 32, 4);
   color: white;
   border: 2px solid rgb(231, 197, 161);
-  outline-color: #A75000 
+  outline-color: #a75000;
 }
 
 #veg {
@@ -82,16 +82,16 @@ img {
   height: auto;
 }
 
-#checkout-cart{
+#checkout-cart {
   width: 60%;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
-#checkout-img{
+#checkout-img {
   width: 100px;
 }
 
-#img-container{
+#img-container {
   width: 100px;
 }
 
@@ -206,28 +206,22 @@ img {
     display: none;
   }
 
-<<<<<<< HEAD
   #slides {
     display: none;
   }
-=======
-#slides{
-  display: none;
-}
 
-.mobile{
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 85vh;
-  padding-bottom: 300px;
-  background-image: url("../images/Carousel/slide1.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
->>>>>>> refs/remotes/origin/master
+  .mobile {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    padding-bottom: 300px;
+    background-image: url("../images/Carousel/slide1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
   .mobile {
     display: flex;
@@ -241,32 +235,21 @@ img {
     background-repeat: no-repeat;
   }
 
-<<<<<<< HEAD
-  .mobile div {
-    background-image: url("../images/Carousel/slide1.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  #checkout-cart {
+    width: 90%;
+    margin: 0 auto;
   }
-=======
-#checkout-cart{
-  width: 90%;
-  margin:0 auto;
-}
 
-#checkout-img{
-  width: 100px;
-}
+  #checkout-img {
+    width: 100px;
+  }
 
-#img-container{
-  width: 100px;
-}
-.container-fluid{
-  padding: 0px;
-}
-
-
->>>>>>> refs/remotes/origin/master
+  #img-container {
+    width: 100px;
+  }
+  .container-fluid {
+    padding: 0px;
+  }
 }
 
 /*ANIMATIONS*/
