@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+  cart count: {{cartCnt}}
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
     <div class="container-fluid">
@@ -122,9 +122,9 @@
         <h4>Find Us</h4>
         <hr class="light">
         <div id="map"></div> --}}
-      </div>
-      <br />
     </div>
+    <br />
+  </div>
   </div>
   </div>
   <!--End of Footer    -->
@@ -148,20 +148,20 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
 
- <!---googlemaps --->
-   <script>
-// Initialize and add the map
-function initMap() {
-  // The location of Eiffel Tower 48.8584° N, 2.2945° E
-  var eiffel = {lat: 48.8584, lng: 2.2945};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: eiffel});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: eiffel, map: map});
-}
-    </script>
-    <script defer
+  <!---googlemaps --->
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of Eiffel Tower 48.8584° N, 2.2945° E
+      var eiffel = { lat: 48.8584, lng: 2.2945 };
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 4, center: eiffel });
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({ position: eiffel, map: map });
+    }
+  </script>
+  <script defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSTO-u7Ki8BVjEamOCDfkKVNG8WANXTZU&callback=initMap">
     </script>
 </body>

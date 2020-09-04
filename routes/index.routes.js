@@ -10,6 +10,7 @@ router.get("/", (req, res, next) => res.render("index"));
 //         shows the hme page
 /************************************************/
 router.get("/logout", (req, res) => {
+  delete req.session.cartCount;
   req.session.destroy();
   res.redirect("/");
 });

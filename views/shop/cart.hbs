@@ -63,7 +63,7 @@
   }
 
   /**==========================================
-  *  triggers when "delete" button is clicked 
+  *  triggers when "delete" button is clicked and gives a confrimation message 
   * ==========================================
   */
   const deleteProduct = id => {
@@ -75,12 +75,12 @@
     document.getElementById("cart-alert").innerHTML = delAlert;
   }
 
+  /**==========================================
+  *  triggers when "delete" confirmation is done    
+  * ==========================================
+  */
   const delConfirmed = id => {
-    console.log(" delConfirmed called ->", id);
-    //  let confirmRes = confirm("Do you want to delete product from the cart ?");
-    //  if (confirmRes == false) {
-    //    return;
-    //   } else {
+
     clearAlert();
     let urlId = `{{envUrl}}/cart/deleteProduct/${id}`;
     console.log(urlId);
@@ -121,13 +121,12 @@
         }
       })
       .catch(err => console.log(`Err while deleting product: ${err}`));
-    // }
 
   };
 
 
   /* =====================================
-  *  Clears teh alert message 
+  *  Clears the alert message 
   *  =========================================
   */
   const clearAlert = () => {

@@ -21,17 +21,20 @@ router.get("/", sessionStore, (req, res) => {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
           return res.render("shop/shop", {
+            cartCnt: req.session.cartCount,
             currentUser: req.session.currentUser,
             errorMessage: "SHOP is Empty",
           });
         }
         res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           productsList: productsFromDB,
         });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           errorMessage: "SHOP is Empty",
         });
@@ -60,17 +63,20 @@ router.get("/fruits", sessionStore, (req, res) => {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
           return res.render("shop/shop", {
+            cartCnt: req.session.cartCount,
             currentUser: req.session.currentUser,
             errorMessage: "There are no fruits in the SHOP",
           });
         }
         res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           productsList: productsFromDB,
         });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           errorMessage: "There are no fruits in the SHOP",
         });
@@ -78,7 +84,7 @@ router.get("/fruits", sessionStore, (req, res) => {
     })
     .catch((error) =>
       res.render("shop/shop", {
-        erroeMessage: "Not authorozed to view the Fruits page" + error,
+        errorMessage: "Not authorozed to view the Fruits page" + error,
       })
     );
 });
@@ -99,17 +105,20 @@ router.get("/vegetables", sessionStore, (req, res) => {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
           return res.render("shop/shop", {
+            cartCnt: req.session.cartCount,
             currentUser: req.session.currentUser,
             errorMessage: "There are no vegetables in the SHOP",
           });
         }
         res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           productsList: productsFromDB,
         });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           errorMessage: "There are no vegetables in the SHOP",
         });
@@ -117,7 +126,7 @@ router.get("/vegetables", sessionStore, (req, res) => {
     })
     .catch((error) =>
       res.render("shop/shop", {
-        erroeMessage: "Not authorozed to view the vegetables page" + error,
+        errorMessage: "Not authorozed to view the vegetables page" + error,
       })
     );
 });
@@ -138,17 +147,20 @@ router.get("/breads", sessionStore, (req, res) => {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
           return res.render("shop/shop", {
+            cartCnt: req.session.cartCount,
             currentUser: req.session.currentUser,
             errorMessage: "There are no breads in the SHOP",
           });
         }
         res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           productsList: productsFromDB,
         });
       } else {
         console.log(req.session.currentUser);
         return res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           errorMessage: "There are no breads in the SHOP",
         });
@@ -156,7 +168,7 @@ router.get("/breads", sessionStore, (req, res) => {
     })
     .catch((error) =>
       res.render("shop/shop", {
-        erroeMessage: "Not authorozed to view the breads page" + error,
+        errorMessage: "Not authorozed to view the breads page" + error,
       })
     );
 });
@@ -177,17 +189,20 @@ router.get("/meat", sessionStore, (req, res) => {
         // console.log(" products list from DB ...");
         if (productsFromDB.length === 0) {
           return res.render("shop/shop", {
+            cartCnt: req.session.cartCount,
             currentUser: req.session.currentUser,
             errorMessage: "There are no meat products in the SHOP",
           });
         }
         res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           productsList: productsFromDB,
         });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/shop", {
+          cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,
           errorMessage: "There are no meat products in the SHOP",
         });
@@ -302,12 +317,14 @@ router.post("/:id", sessionStore, (req, res) => {
           customerId: req.session.currentUser._id,
         });
         cartProduct.products.push({ productId: req.params.id });
+        req.session.cartCount++;
         return cartProduct.save();
       }
       //  Add a new product to the customer unchecked -out Cart.
       if (addNewProduct) {
         // add a new product to the product array
         // console.log(" Adding a new product to un-cheked-out cart");
+        req.session.cartCount++;
         return cartModel.findOneAndUpdate(
           {
             $and: [

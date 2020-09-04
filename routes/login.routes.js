@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user.model");
+const cartModel = require("../models/cart.model");
 
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
@@ -43,8 +44,27 @@ router.post("/", (req, res, next) => {
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
         // console.log(req.session.currentUser);
-        // res.redirect(/"/");
-        res.render("", { currentUser: req.session.currentUser });
+        // get the cart prodcuts count ( which are nor ordered)
+        cartModel
+          .findOne({
+            $and: [
+              { customerId: req.session.currentUser._id },
+              { ordered: false },
+            ],
+          })
+          .then((cartProductsFromDB) => {
+            // console.log("  result from DB for cart products after login ");
+            if (cartProductsFromDB) {
+              req.session.cartCount = cartProductsFromDB.products.length;
+            } else {
+              req.session.cartCount = 0;
+            }
+
+            res.render("", {
+              cartCnt: req.session.cartCount,
+              currentUser: req.session.currentUser,
+            });
+          });
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }

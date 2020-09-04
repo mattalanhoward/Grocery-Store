@@ -38,12 +38,14 @@ router.get("/", sessionStore, (req, res) => {
         } = productsInCart;
         if (products.length === 0) {
           return res.render("shop/cart", {
+            cartCnt: req.session.cartCount,
             envUrl: process.env.URL,
             currentUser: req.session.currentUser,
             infoMessage: "Cart is Empty",
           });
         }
         res.render("shop/cart", {
+          cartCnt: req.session.cartCount,
           envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           cartId,
@@ -54,6 +56,7 @@ router.get("/", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
+          cartCnt: req.session.cartCount,
           envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           infoMessage: "Cart is Empty",
@@ -100,6 +103,7 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
+          cartCnt: req.session.cartCount,
           envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           errorMessage: "Error while updating the quantity of the product ",
@@ -109,6 +113,7 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
     .catch((error) => {
       // console.log("error while updating the quantity of the product", error);
       return res.render("shop/cart", {
+        cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         errorMessage:
@@ -124,9 +129,6 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
 //
 /************************************************/
 router.get("/decQty/:id", sessionStore, (req, res) => {
-  // console.log(" dec quantity clicked ... ");
-  // console.log(req.params.id);
-
   cartModel
     .findOneAndUpdate(
       {
@@ -141,7 +143,7 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
     )
     .then((resultFromDB) => {
       // console.log(" decremented result: ");
-      // console.log(resultFromDB);
+
       if (resultFromDB) {
         const retProduct = resultFromDB.products.filter(
           (ele) => ele.productId == req.params.id
@@ -151,6 +153,7 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
+          cartCnt: req.session.cartCount,
           envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           errorMessage:
@@ -161,6 +164,7 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
     .catch((error) => {
       // console.log("error while updating the quantity of the product", error);
       return res.render("shop/cart", {
+        cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         errorMessage:
@@ -224,6 +228,7 @@ router.delete("/deleteProduct/:id", sessionStore, (req, res) => {
       if (!populatedProductInfo) {
         // HOW to handle this case :
         return res.render("shop/cart", {
+          cartCnt: req.session.cartCount,
           envUrl: process.env.URL,
           currentUser: req.session.currentUser,
           infoMessage: "Error while deleting the product" + error,
@@ -245,6 +250,7 @@ router.delete("/deleteProduct/:id", sessionStore, (req, res) => {
     })
     .catch((error) => {
       return res.render("shop/cart", {
+        cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         infoMessage: "Error while deleting the product" + error,
@@ -293,6 +299,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
 
       console.log(products);
       res.render("shop/checkout", {
+        cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         cartId,
@@ -303,6 +310,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
     })
     .catch((error) => {
       return res.render("shop/cart", {
+        cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
         infoMessage: "Error while placing order" + error,
