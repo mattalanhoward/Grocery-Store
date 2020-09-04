@@ -1,16 +1,33 @@
+/* light-brown */
+/* rgb(249, 238, 227) */
+
+/* medium-brown */
+/* rgb(231, 197, 161) */
+
+/* dark-brown */
+/* rgb(81,32,4) */
+
+body{
+  background-color: rgb(249, 238, 227);
+}
 
 /*  WELCOME  */
 .welcome {
   margin: 100px 0;
+  
+}
+
+.mobile{
+  display: none;
 }
 
 h4 {
   font-size: 1rem;
 }
 
-a.nav-link {
+/* a.nav-link {
 text-align: right;
-}
+} */
 
 .card-container{
   width: 80%;
@@ -165,6 +182,32 @@ img {
     display: none;
     
     }
+  .navbar div h3{
+    display: none;
+  }
+
+#slides{
+  display: none;
+}
+
+.mobile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding-bottom: 300px;
+  background-image: url("../images/Carousel/slide1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mobile div{
+  background-image: url("../images/Carousel/slide1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 }
 
