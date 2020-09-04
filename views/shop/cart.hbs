@@ -12,6 +12,8 @@
   {{firstName}}'s Cart
 </div> --}}
 
+<div class="m-2 text-center" id="cart-alert"> </div>
+
 <table class="table container-fluid" id="customer-cart">
   <thead class="thead-light">
     <tr>
@@ -126,6 +128,7 @@
           });
           document.querySelector('#customer-cart tbody').innerHTML = productRow;
           calculateBill();
+          calcSubtotal();
         }
       })
       .catch(err => console.log(`Err while deleting product: ${err}`));
