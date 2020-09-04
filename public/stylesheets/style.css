@@ -67,9 +67,29 @@ img {
   border: 2px solid rgb(231, 197, 161);
 }
 
+.btn-primary:focus{
+  background-color:rgb(81,32,4);
+  color: white;
+  border: 2px solid rgb(231, 197, 161);
+  outline-color: #A75000 
+}
+
 #veg {
   width: 300px;
   height: auto;
+}
+
+#checkout-cart{
+  width: 60%;
+  margin:0 auto;
+}
+
+#checkout-img{
+  width: 100px;
+}
+
+#img-container{
+  width: 100px;
 }
 
 /* Parallax Section */
@@ -191,10 +211,11 @@ img {
 }
 
 .mobile{
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 85vh;
   padding-bottom: 300px;
   background-image: url("../images/Carousel/slide1.jpg");
   background-position: center;
@@ -208,6 +229,23 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+#checkout-cart{
+  width: 90%;
+  margin:0 auto;
+}
+
+#checkout-img{
+  width: 100px;
+}
+
+#img-container{
+  width: 100px;
+}
+.container-fluid{
+  padding: 0px;
+}
+
 
 }
 

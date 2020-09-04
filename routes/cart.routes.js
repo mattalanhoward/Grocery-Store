@@ -287,7 +287,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
       // sendEmail.sendWelcomeEmail(populatedResult);
       const {
         _id: cartId,
-        customerId: { firstName, lastName },
+        customerId: { firstName, lastName, address, email, phoneNumber },
         products: [...products],
       } = populatedResult;
 
@@ -298,7 +298,10 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
         cartId,
         firstName,
         lastName,
-        products,
+        address,
+        email,
+        phoneNumber,
+        products
       });
     })
     .catch((error) => {
