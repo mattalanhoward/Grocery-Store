@@ -8,9 +8,8 @@
 
 {{#if products}}
 
-{{!-- <div class="m-2">
-  {{firstName}}'s Cart
-</div> --}}
+<div class="m-2" id="cart-alert"> </div>
+
 
 <table class="table container-fluid" id="customer-cart">
   <thead class="thead-light">
@@ -44,7 +43,7 @@
     {{/each}}
 
   </tbody>
- 
+
   <tfoot onload="calculateBill">
     <tr>
       <td>Total :</td>
@@ -57,11 +56,11 @@
 </table>
 
 <div class="text-center m-3">
-<a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
-{{/if}}
-<a class="btn btn-primary" href="/shop/"> Back to Shop </a>
+  <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
+  {{/if}}
+  <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
 
-{{#if products}}
+  {{#if products}}
 </div>
 <script>
 
@@ -75,6 +74,7 @@
   * ==========================================
   */
   const deleteProduct = id => {
+    console.log("deleteProduct clicked --")
     //confirmation of deletion
     let delAlert = ` <p class="alert alert-danger" id="cart-alert-msg"> Do you want to delete product from the cart ?
                       <button  class="btn btn-primary"   onclick=delConfirmed("${id}")> YES </button>

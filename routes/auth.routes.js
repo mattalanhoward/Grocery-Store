@@ -23,7 +23,8 @@ router.get("/", (req, res) => {
 //         -> Redirects to home page
 /************************************************/
 router.post("/", (req, res) => {
-  // console.log(req.body);
+  console.log(" when register button clicked ----");
+  console.log(req);
   const {
     firstname: fname,
     lastname: lname,

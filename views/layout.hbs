@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  cart count: {{cartCnt}}
+  {{!-- cart count: {{cartCnt}} --}}
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: rgb(231, 197, 161);">
     <div class="container-fluid">
@@ -75,7 +75,9 @@
         </ul>
       </div>
       {{#if currentUser}}
-      <h2><a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i></a></h2>
+      <h2><a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"> <span>
+              <sub> <small> <strong>{{cartCnt}}</strong></small> </sub>
+            </span></i></a></h2>
       {{/if}}
     </div>
   </nav>

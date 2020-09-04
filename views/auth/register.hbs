@@ -1,95 +1,95 @@
 {{!--views/auth/signup.hbs --}}
 <div class="register container-fluid">
-  <form  class="login-container" action="/register" method="POST">
+  <form class="login-container" action="/register" method="POST">
 
-  <div id="input-container" class="bg light-brown p-3 rounded">
-    <h3 class="text-center p-3"> Register </h3>
-    <!-- First Name -->
-    <div class="form-group row">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="firstname">First Name</label>
-      <div class="col-md-4">
-        <input class="form-control" type="text" name="firstname" placeholder="Enter First name">
+    <div id="input-container" class="bg light-brown p-3 rounded">
+      <h3 class="text-center p-3"> Register </h3>
+      <!-- First Name -->
+      <div class="form-group row">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="firstname">First Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="firstname" placeholder="Enter First name">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
-    <!-- Last Name -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="lastname">Last Name</label>
-      <div class="col-md-4">
-        <input class="form-control" type="text" name="lastname" placeholder="Enter Last name">
+      <!-- Last Name -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="lastname">Last Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="lastname" placeholder="Enter Last name">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
-    <!-- EmailID -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="email">E-mail Address</label>
-      <div class="col-md-4">
-        <input class="form-control" type="text" name="email" placeholder="Email Address">
+      <!-- EmailID -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="email">E-mail Address<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="email" placeholder="Email Address">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
 
-    <!-- Password  -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="password">Password</label>
-      <div class="col-md-4">
-        <input class="form-control" type="password" name="password" placeholder="Enter password">
+      <!-- Password  -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="password">Password<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="password" name="password" placeholder="Enter password">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
 
-    <!-- retype password  -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="rePassword">Retype Password</label>
-      <div class="col-md-4">
-        <input class="form-control" type="password" name="rePassword" placeholder="Confirm Password">
+      <!-- retype password  -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="rePassword">Retype Password<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="password" name="rePassword" placeholder="Confirm Password">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
 
-    <!-- Address -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="address">Address</label>
-      <div class="col-md-4">
-        <input class="form-control" type="text-area" name="address" placeholder="Enter Full Address">
+      <!-- Address -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="address">Address<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text-area" name="address" placeholder="Enter Full Address">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
-    </div>
 
 
-    <!-- Phone number -->
-    <div class="form-group row ">
-      <div class="col-md-3"></div>
-        <label class="col-md-2" for="phone">Phone Number</label>
-      <div class="col-md-4">
-        <input class="form-control" type="text" name="phone" placeholder="Enter Phone Number">
+      <!-- Phone number -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="phone">Phone Number<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="phone" placeholder="Enter Phone Number">
+        </div>
+        <div class="col-md-3"></div>
       </div>
-      <div class="col-md-3"></div>
+
+
+      <!--- button --->
+      <div class="form-group row">
+        <div class="col-md-5"></div>
+        <button type="submit" class="btn btn-primary col-md-2 m-3">Register</button>
+        <div class="col-md-5"></div>
+      </div>
+
+      {{#if errorMessage}}
+      <p class="alert alert-danger text-center">{{errorMessage}}</p>
+      {{/if}}
+
     </div>
-
-          
-    <!--- button --->      
-    <div class="form-group row">
-      <div class="col-md-5"></div>
-      <button type="submit" class="btn btn-primary col-md-2 m-3">Register</button>
-      <div class="col-md-5"></div>
-    </div>
-
-    {{#if errorMessage}}
-    <p class="alert alert-danger text-center">{{errorMessage}}</p>
-    {{/if}}
-
-  </div>
   </form>
 </div>
