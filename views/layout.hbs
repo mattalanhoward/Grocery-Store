@@ -20,13 +20,10 @@
 <body>
   cart count: {{cartCnt}}
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: rgb(231, 197, 161);">
     <div class="container-fluid">
       <a class="navbar-brand" id="logo" href="/"><img src="/images/logo1.png" alt="Farm Grocer Logo"></a>
-      <h1 class="display-5">Farm Grocer</h1>
-      {{#if currentUser}}
-      <h2><a class="nav-link text-secondary float-right" href="/cart"><i class="fa fa-shopping-cart"></i></a></h2>
-      {{/if}}
+      <h3>Farm Grocer</h3>
 
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive">
         <span class="navbar-toggler-icon"></span>
@@ -77,7 +74,9 @@
           {{/if}}
         </ul>
       </div>
-
+      {{#if currentUser}}
+      <h2><a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i></a></h2>
+      {{/if}}
     </div>
   </nav>
 
@@ -91,7 +90,7 @@
 
 
   <!-- Footer -->
-  <div class="container-fluid padding bg-light">
+  <div class="container-fluid padding" style="background-color: rgb(231, 197, 161);">
     <div class="row text-center">
       <div class="col-md-3"></div>
       <div class="col-md-3 my-3">
@@ -148,22 +147,6 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
 
-  <!---googlemaps --->
-  <script>
-    // Initialize and add the map
-    function initMap() {
-      // The location of Eiffel Tower 48.8584° N, 2.2945° E
-      var eiffel = { lat: 48.8584, lng: 2.2945 };
-      // The map, centered at Uluru
-      var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 4, center: eiffel });
-      // The marker, positioned at Uluru
-      var marker = new google.maps.Marker({ position: eiffel, map: map });
-    }
-  </script>
-  <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSTO-u7Ki8BVjEamOCDfkKVNG8WANXTZU&callback=initMap">
-    </script>
 </body>
 
 </html>

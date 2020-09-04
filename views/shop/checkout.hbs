@@ -1,11 +1,13 @@
-<div class="m-2">
-  Dear {{firstName}} {{lastName}},
-  <h2> Thank you for using our "Farm Grocer"</h2>
-  <h4> Your order will be delivered within 24 hours</h4>
+<div class="col-sm-12 text-center m-2 mt-3">
+  {{firstName}} {{lastName}},
+  <h2 class="my-3"> We've received your order! <br>
+   Thank you for using Farm Grocer</h2>
+  <h4> Your cart will be delivered by one of our friendly team members within 24 hours</h4>
 </div>
 
+<hr>
 <div class="m-2">
-  <h2>ORDER SUMMARY</h2>
+  <h2 class="text-center">ORDER SUMMARY</h2>
 </div>
 
 
@@ -14,29 +16,29 @@
     {{#each products }}
     <tr class="product">
       <td>
-        <div> <img class="rounded" src={{productId.imageUrl}}>
+        <div> 
+          <img class="rounded" src={{productId.imageUrl}}>
         </div>
       </td>
       <td>
         <div>
-          <p> {{ productId.name}} </p>
-          <p> <span class="qty"> {{ quantity}} </span> X
-            €<span class="price">{{productId.price}}</span>
-            =<span class="subtot"> </span></p>
+          <h3> {{ productId.name}} </h3>
+          <p> Qty: <span class="qty"> {{ quantity}} </span> <br>
+           €/kg : €<span class="price">{{productId.price}}</span> <br>
+          Total item Cost: <span class="subtot"> </span></p>
         </div>
       </td>
     </tr>
     {{/each}}
+    <tfoot>
+  <div>
+    <h3>Total Invoice:<h3 id="grand-tot"> </h3></h3>
+    
+  </div>
+</tfoot>
   </tbody>
 </table>
 
-<hr>
-<tfoot>
-  <div>
-    <p>Grand Total </p>
-    <p id="grand-tot"> </p>
-  </div>
-</tfoot>
 
 
 <script>
@@ -60,7 +62,7 @@
 
       grandTot += subtotal;
     });
-    document.getElementById("grand-tot").innerText = grandTot;
+    document.getElementById("grand-tot").innerText = grandTot.toFixed(2);
   }
 
 </script>
