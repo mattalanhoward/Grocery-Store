@@ -53,9 +53,13 @@ router.post("/", (req, res, next) => {
             ],
           })
           .then((cartProductsFromDB) => {
-            // console.log("  result from DB for cart products after login ");
+            console.log("  result from DB for cart products after login ");
+            console.log(cartProductsFromDB);
             if (cartProductsFromDB) {
-              req.session.cartCount = cartProductsFromDB.products.length;
+              req.session.cartCount = cartProductsFromDB.products.reduce(
+                (tot, item) => tot + item.quantity,
+                0
+              );
             } else {
               req.session.cartCount = 0;
             }

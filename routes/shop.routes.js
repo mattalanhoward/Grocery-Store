@@ -317,14 +317,13 @@ router.post("/:id", sessionStore, (req, res) => {
           customerId: req.session.currentUser._id,
         });
         cartProduct.products.push({ productId: req.params.id });
-        req.session.cartCount++;
         return cartProduct.save();
       }
       //  Add a new product to the customer unchecked -out Cart.
       if (addNewProduct) {
         // add a new product to the product array
         // console.log(" Adding a new product to un-cheked-out cart");
-        req.session.cartCount++;
+        // req.session.cartCount++;
         return cartModel.findOneAndUpdate(
           {
             $and: [
@@ -340,6 +339,7 @@ router.post("/:id", sessionStore, (req, res) => {
     .then((newCartCreated) => {
       // then -2
       // console.log("then-2 :  new cart record added .... ", newCartCreated);
+      req.session.cartCount++;
       if (newCartCreated) {
         res.redirect(redirectUri);
       } else {
