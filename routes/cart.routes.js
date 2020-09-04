@@ -296,8 +296,9 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
         customerId: { firstName, lastName, address, email, phoneNumber },
         products: [...products],
       } = populatedResult;
-
+      // let CtID = cartId.toString().splice(0, 5);
       console.log(products);
+      req.session.cartCount = 0;
       res.render("shop/checkout", {
         cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
@@ -308,7 +309,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
         address,
         email,
         phoneNumber,
-        products
+        products,
       });
     })
     .catch((error) => {

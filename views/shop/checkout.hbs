@@ -1,10 +1,11 @@
 <div class="col-sm-12 text-center mt-3 p-3 bg-success">
   <h5>{{firstName}} {{lastName}},</h5>
-  
+
   <h2 class="my-3"> We've received your order! <br>
-   Thank you for using Farm Grocer</h2>
+    Thank you for using Farm Grocer</h2>
   <h4> Your cart will be delivered to {{address}} by one of our friendly team members within 24 hours</h4> <br>
-  <h4>Please contact us at <a href="mailto:info@farmgrocer.com">Farm Grocer</a> if you have any questions or concerns.</h4>
+  <h4>Please contact us at <a href="mailto:info@farmgrocer.com">Farm Grocer</a> if you have any questions or concerns.
+  </h4>
 </div>
 
 
@@ -13,7 +14,9 @@
 <hr>
 <div class="m-2">
   <h2 class="text-center">ORDER SUMMARY</h2>
-  <h3 class="text-center">Order Total:<p id="grand-tot"></p></h3>
+  <h3 class="text-center">Order Id: <p id="order-id"> {{cartId}}</p>
+    <h3 class="text-center">Order Total: <p id="grand-tot"></p>
+    </h3>
 </div>
 
 
@@ -22,7 +25,7 @@
     {{#each products }}
     <tr class="product">
       <td id="img-container">
-        <div> 
+        <div>
           <img class="rounded " id="checkout-img" src={{productId.imageUrl}}>
         </div>
       </td>
@@ -30,8 +33,8 @@
         <div>
           <h3> {{ productId.name}} </h3>
           <p> Qty: <span class="qty"> {{ quantity}} </span> <br>
-           €/kg : €<span class="price">{{productId.price}}</span> <br>
-          Total item Cost: <span class="subtot"> </span></p>
+            €/kg : €<span class="price">{{productId.price}}</span> <br>
+            Total item Cost: € <span class="subtot"> </span></p>
         </div>
       </td>
     </tr>
@@ -41,7 +44,7 @@
 
 <hr>
 
-  <h4 class="text-center"> We have sent a receipt to {{email}}, for your records</h4>
+<h4 class="text-center"> We have sent a receipt to {{email}}, for your records</h4>
 
 <hr>
 <div class="text-center m-3">
@@ -76,7 +79,8 @@
 
       grandTot += subtotal;
     });
-    document.getElementById("grand-tot").innerText = grandTot.toFixed(2);
+    document.getElementById("grand-tot").innerText = "€ " + grandTot.toFixed(2);
+    document.getElementById("order-id").innerText = "ID_" + (document.getElementById("order-id").innerText).slice(0, 5).toUpperCase();
   }
 
 </script>
