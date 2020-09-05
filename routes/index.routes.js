@@ -15,4 +15,7 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+/* GET about page */
+router.get("/about", (req, res, next) => res.render("about"));
+
 module.exports = router;
