@@ -23,8 +23,7 @@ router.get("/", (req, res) => {
 //         -> Redirects to home page
 /************************************************/
 router.post("/", (req, res) => {
-  console.log(" when register button clicked ----");
-  console.log(req);
+  // console.log(req.body);
   const {
     firstname: fname,
     lastname: lname,
@@ -89,7 +88,9 @@ router.post("/", (req, res) => {
     .then((resultfromDB) => {
       if (resultfromDB) {
         console.log("User is successfully created.... ");
-        res.redirect("/");
+        res.redirect("/", {
+          regSuccessMsg: "Congratulations!! you are succefully ",
+        });
       } else {
       }
       //TODO:  change this message
