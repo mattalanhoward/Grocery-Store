@@ -92,14 +92,14 @@ router.get("/incQty/:id", sessionStore, (req, res) => {
       { new: true }
     )
     .then((resultFromDB) => {
-      // console.log(" incremented result: ");
       // console.log(resultFromDB);
       if (resultFromDB) {
         const retProduct = resultFromDB.products.filter(
           (ele) => ele.productId == req.params.id
         );
         // console.log(resultFromDB.products);
-        return res.send(retProduct);
+        req.session.cartCount++;
+        return res.send({ retProduct, cartCnt: req.session.cartCount });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
@@ -148,8 +148,10 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
         const retProduct = resultFromDB.products.filter(
           (ele) => ele.productId == req.params.id
         );
-        // console.log(resultFromDB.products);
-        return res.send(retProduct);
+        console.log(retProduct);
+        req.session.cartCount--;
+        // return res.send(retProduct);
+        return res.send({ retProduct, cartCnt: req.session.cartCount });
       } else {
         // console.log(req.session.currentUser);
         return res.render("shop/cart", {
@@ -162,7 +164,6 @@ router.get("/decQty/:id", sessionStore, (req, res) => {
       }
     })
     .catch((error) => {
-      // console.log("error while updating the quantity of the product", error);
       return res.render("shop/cart", {
         cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
@@ -245,8 +246,15 @@ router.delete("/deleteProduct/:id", sessionStore, (req, res) => {
             prodList.push({ _id, name, price, imageUrl, category, quantity })
         );
       }
-      // console.log(prodList);
-      return res.send(prodList);
+      console.log(prodList);
+      const finalProdCnt = prodList.reduce(
+        (counter, ele) => counter + ele.quantity,
+        0
+      );
+      console.log(finalProdCnt);
+      req.session.cartCount = finalProdCnt;
+      return res.send({ prodList, cartCnt: req.session.cartCount });
+      // return res.send(prodList);
     })
     .catch((error) => {
       return res.render("shop/cart", {
@@ -296,8 +304,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
         customerId: { firstName, lastName, address, email, phoneNumber },
         products: [...products],
       } = populatedResult;
-      // let CtID = cartId.toString().splice(0, 5);
-      console.log(products);
+
       req.session.cartCount = 0;
       res.render("shop/checkout", {
         cartCnt: req.session.cartCount,

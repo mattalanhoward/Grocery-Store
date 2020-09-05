@@ -99,7 +99,7 @@
       .then(response => {
         console.log(" response from server ");
         console.log(response.data);
-        console.log(response);
+        // console.log(response);
         if (response.data.length === 0) {
           console.log(" no products in cart ")
           document.getElementById('customer-cart').textContent = "";
@@ -107,7 +107,7 @@
 
         } else {
           let productRow = "";
-          response.data.forEach(product => {
+          response.data.prodList.forEach(product => {
             console.log(product);
             productRow += `<tr class="product">
                            <td> ${product.name} </td>
@@ -129,6 +129,7 @@
           document.querySelector('#customer-cart tbody').innerHTML = productRow;
           calculateBill();
           calcSubtotal();
+          document.getElementById("cart-cntr").innerText = response.data.cartCnt;
         }
       })
       .catch(err => console.log(`Err while deleting product: ${err}`));
@@ -156,17 +157,20 @@
     axios
       .get(urlId)
       .then(response => {
+        // console.log(response.data.retProduct)
         let allProducts = document.querySelectorAll('.product');
         Array.from(allProducts).forEach(ele => {
           if (id == ele.querySelector('input').value) {
-            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
-            ele.querySelector('.quantity').textContent = response.data[0].quantity;
+            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data.retProduct[0].quantity}" )`);
+            ele.querySelector('.quantity').textContent = response.data.retProduct[0].quantity;
           }
         });
         calculateBill();
         calcSubtotal();
+
+        document.getElementById("cart-cntr").innerText = response.data.cartCnt;
       })
-      .catch(err => console.log(`Err while increasing product quantity: ${err}`));
+      .catch(err => console.log(`Err while increasing product quantity: ${err} `));
   };
 
 
@@ -198,8 +202,8 @@
       let qty = ele.getElementsByClassName("quantity")[0].innerText;
       let price = ele.getElementsByClassName("price")[0].innerText;
       subtotal = (qty * price);
-      console.log(`SUBTOTAL ${subtotal}`)
-      ele.getElementsByClassName("subtotal")[0].innerText = `€ ${subtotal.toFixed(2)}`
+      //console.log(`SUBTOTAL ${subtotal} `)
+      ele.getElementsByClassName("subtotal")[0].innerText = `€ ${subtotal.toFixed(2)} `
 
     })
   }
@@ -211,28 +215,30 @@
   * ==========================================
    */
   const decQuantity = (id, qty) => {
-    console.log(qty);
+    // console.log(qty);
     if (qty <= 1) {
-      let qtyAlert = ` <p class="alert alert-danger" id="cart-alert-msg"> Minimum quantity should be 1 !! 
-                      <button  class="btn btn-primary"  onclick="clearAlert()"> OK </button> </p>  ` ;
+      let qtyAlert = ` < p class="alert alert-danger" id = "cart-alert-msg" > Minimum quantity should be 1!!
+    < button  class="btn btn-primary"  onclick = "clearAlert()" > OK </button > </p > ` ;
       document.getElementById("cart-alert").innerHTML = qtyAlert;
       return;
     }
 
     const urlId = `{{envUrl}}/cart/decQty/${id}`;
+    console.log(urlId)
     axios
       .get(urlId)
       .then(response => {
+        console.log(response.data);
         let allProducts = document.querySelectorAll('.product');
         Array.from(allProducts).forEach(ele => {
           if (id == ele.querySelector('input').value) {
-            ele.querySelector('.quantity').textContent = response.data[0].quantity;
-            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity( "${id}","${response.data[0].quantity}" )`);
+            ele.querySelector('.quantity').textContent = response.data.retProduct[0].quantity;
+            ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity("${id}", "${response.data.retProduct[0].quantity}")`);
           }
         });
         calculateBill();
         calcSubtotal();
-
+        document.getElementById("cart-cntr").innerText = response.data.cartCnt;
       })
       .catch(err => console.log(`Error while decreasing product quantity: ${err}`));
   };
