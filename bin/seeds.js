@@ -138,12 +138,48 @@ const products = [
     price: 1.99,
   },
   {
-    name: "asparagus",
+    name: "Asparagus",
     imageUrl:
       "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/asparagus_g7gawm.jpg",
     category: "vegetables",
     price: 3.99,
+  },  
+  {
+    name: "Roast Beef",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/roast-beef_ugfc86.jpg",
+    category: "vegetables",
+    price: 9.81,
   },
+  {
+    name: "Hamburger",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/hamburger_x5xnto.jpg",
+    category: "meat",
+    price: 2.99,
+  },
+  {
+    name: "Chicken - whole",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/whole-chicken_me0v7w.jpg",
+    category: "meat",
+    price: 2.99,
+  },
+  {
+    name: "Salmon",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/whole-chicken_me0v7w.jpg",
+    category: "meat",
+    price: 5.50,
+  },
+  {
+    name: "Beef Steak",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/beef-steak_ym3hq1.jpg",
+    category: "meat",
+    price: 4.37,
+  },
+
 ];
 
 Product.create(products)

@@ -31,6 +31,7 @@ text-align: right;
 .card-container {
   width: 80%;
   border: 2px solid rgb(81, 32, 4);
+  background-color: rgb(231, 197, 161);
   margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
@@ -39,7 +40,7 @@ text-align: right;
 }
 
 .card-shop {
-  border: 1px solid rgb(81, 32, 4);
+  border: 1px solid rgb(231, 197, 161);
   max-width: 225px;
   margin: 20px;
 }
@@ -59,6 +60,7 @@ img {
 .btn-primary {
   /* background-color: rgb(81,32,4);
  border: rgb(231, 197, 161) */
+ border-radius: 10px;
   background-color: rgb(231, 197, 161);
   border: 2px solid rgb(81, 32, 4);
   color: black;
@@ -129,7 +131,8 @@ img {
 }
 
 .services img {
-  width: 100px;
+  color: white;
+  width: 80px;
   height: auto;
 }
 
@@ -210,20 +213,8 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 85vh;
-    padding-bottom: 300px;
-    background-image: url("../images/Carousel/slide1.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .mobile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    padding-bottom: 300px;
+    height: 50vh;
+    padding-bottom: 200px;
     background-image: url("../images/Carousel/slide1.jpg");
     background-position: center;
     background-size: cover;
@@ -242,8 +233,10 @@ img {
   #img-container {
     width: 100px;
   }
+  
   .container-fluid {
-    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 

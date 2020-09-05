@@ -4,14 +4,14 @@
   <hr>
   <div class="card-container rounded p-3">
     {{#each productsList}}
-    <div class="card card-shop light-brown p-3">
+    <div class="card card-shop p-3">
       <div class="card-body text-center">
         
         <form action="/shop/{{_id}}" method="POST">
           <h4> {{name}} </h4>
           <img class="rounded" src={{imageUrl}}>
           <h5 class="m-1">${{price}}</h5>
-          <button class="btn-primary p-2 rounded"type="submit">Add To cart</button>
+          <button class="btn-primary m-1 p-2"type="submit">Add To cart</button>
         </form>
 
       </div>
