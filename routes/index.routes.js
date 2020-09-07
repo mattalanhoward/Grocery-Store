@@ -2,7 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 /* GET home page */
-router.get("/", (req, res, next) => res.render("index", { currentUser: req.session.currentUser }));
+router.get("/", (req, res, next) =>
+  res.render("index", {
+    cartCnt: req.session.cartCount,
+    currentUser: req.session.currentUser,
+  })
+);
 
 /************************************************/
 //        HTTP-GET-request: /logout
@@ -16,6 +21,11 @@ router.get("/logout", (req, res) => {
 });
 
 /* GET about page */
-router.get("/about", (req, res, next) => res.render("about"));
+router.get("/about", (req, res, next) =>
+  res.render("about", {
+    cartCnt: req.session.cartCount,
+    currentUser: req.session.currentUser,
+  })
+);
 
 module.exports = router;

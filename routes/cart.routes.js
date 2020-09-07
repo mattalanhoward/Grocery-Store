@@ -298,7 +298,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
       console.log(" result for placing order");
 
       // SEND EMAIL
-      // sendEmail.sendWelcomeEmail(populatedResult);
+      sendEmail.sendWelcomeEmail(populatedResult);
       const {
         _id: cartId,
         customerId: { firstName, lastName, address, email, phoneNumber },
@@ -324,7 +324,7 @@ router.get("/check-out/:cartid", sessionStore, (req, res) => {
         cartCnt: req.session.cartCount,
         envUrl: process.env.URL,
         currentUser: req.session.currentUser,
-        infoMessage: "Error while placing order" + error,
+        errorMessage: "Error while placing order" + error,
       });
     });
 });

@@ -104,6 +104,13 @@ img {
   outline-color: #a75000;
 }
 
+#slogan {
+  font-family: Brush Script MT, cursive;
+  margin-top: -15px;
+  padding-left: 15px;
+  font-size: x-large;
+}
+
 #veg {
   width: 300px;
   height: auto;
@@ -263,7 +270,7 @@ img {
   #img-container {
     width: 100px;
   }
-  
+
   .container-fluid {
     padding-left: 0px;
     padding-right: 0px;

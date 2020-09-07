@@ -88,9 +88,13 @@ router.post("/", (req, res) => {
     .then((resultfromDB) => {
       if (resultfromDB) {
         console.log("User is successfully created.... ");
-        res.redirect("/", {
-          regSuccessMsg: "Congratulations!! you are succefully ",
+        res.render("auth/login", {
+          regSuccessMsg:
+            "Congratulations!! you are successfully registered to Farm Grocer",
         });
+        // res.redirect("/", {
+        //   regSuccessMsg: "Congratulations!! you are succefully ",
+        // });
       } else {
       }
       //TODO:  change this message
