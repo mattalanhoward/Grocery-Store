@@ -26,7 +26,7 @@ const productSchema = new Schema(
 
     category: {
       type: String,
-      enum: ["fruits", "vegetables"],
+      enum: ["fruits", "vegetables", "breads", "meat"],
     },
     price: Number,
   },
