@@ -60,7 +60,7 @@ img {
 .btn-primary {
   /* background-color: rgb(81,32,4);
  border: rgb(231, 197, 161) */
- border-radius: 10px;
+  border-radius: 20px;
   background-color: rgb(231, 197, 161);
   border: 2px solid rgb(81, 32, 4);
   color: black;
@@ -77,6 +77,13 @@ img {
   color: white;
   border: 2px solid rgb(231, 197, 161);
   outline-color: #a75000;
+}
+
+#slogan {
+  font-family: Brush Script MT, cursive;
+  margin-top: -15px;
+  padding-left: 15px;
+  font-size: x-large;
 }
 
 #veg {
@@ -135,7 +142,6 @@ img {
   width: 80px;
   height: auto;
 }
-
 
 /*LOGIN*/
 .login-container {
@@ -233,7 +239,7 @@ img {
   #img-container {
     width: 100px;
   }
-  
+
   .container-fluid {
     padding-left: 0px;
     padding-right: 0px;

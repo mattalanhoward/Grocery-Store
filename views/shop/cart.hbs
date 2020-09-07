@@ -12,62 +12,65 @@
 
 
 <div class="m-2 text-center" id="cart-alert"> </div>
+<div id="cart-div">
+  <table class="table container-fluid" id="customer-cart">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price/kg</th>
+        <th scope="col">Subtotal</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
 
-<table class="table container-fluid" id="customer-cart">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Product</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price/kg</th>
-      <th scope="col">Subtotal</th>
-      <th scope="col">Remove</th>
-    </tr>
-  </thead>
+    <tbody>
+      {{#each products }}
+      <tr class="product">
+        <td> {{ productId.name}} </td>
+        <td>
+          <div>
+            <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> ━
+            </button>
+            <span class="quantity"> {{ quantity}} </span>
+            <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
+          </div>
+        </td>
+        <td>€ <span class="price">{{productId.price}}</span></td>
+        <td> <span class="subtotal"></span></td>
+        <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
+          <input type="hidden" id="productId" name="productId" value={{productId._id}}>
+        </td>
+      </tr>
+      {{/each}}
 
-  <tbody>
-    {{#each products }}
-    <tr class="product">
-      <td> {{ productId.name}} </td>
-      <td>
-        <div>
-          <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
-          </button>
-          <span class="quantity"> {{ quantity}} </span>
-          <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
-        </div>
-      </td>
-      <td>€ <span class="price">{{productId.price}}</span></td>
-      <td> <span class="subtotal"></span></td>
-      <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
-        <input type="hidden" id="productId" name="productId" value={{productId._id}}>
-      </td>
-    </tr>
-    {{/each}}
+    </tbody>
 
-  </tbody>
+    <tfoot>
+      <!--  onload="calculateBill" -->
+      <tr>
+        <td>Total :</td>
+        <td></td>
+        <td></td>
+        <td>€ <span id="total"> </span></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
 
-  <tfoot onload="calculateBill">
-    <tr>
-      <td>Total :</td>
-      <td></td>
-      <td></td>
-      <td>€ <span id="total"> </span></td>
-      <td></td>
-    </tr>
-  </tfoot>
-</table>
+  <div class="text-center m-3">
+    <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
+    {{/if}}
+    <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
 
-<div class="text-center m-3">
-  <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
-  {{/if}}
-  <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
+    {{#if products}}
+  </div>
 
-  {{#if products}}
 </div>
+
 <script>
 
   window.onload = function () {
-    calculateBill();
     calcSubtotal();
   }
 
@@ -100,10 +103,11 @@
         console.log(" response from server ");
         console.log(response.data);
         // console.log(response);
-        if (response.data.length === 0) {
+        if (response.data.prodList.length === 0) {
           console.log(" no products in cart ")
-          document.getElementById('customer-cart').textContent = "";
-          document.getElementById('check-out').style.display = 'none';
+          document.getElementById('cart-div').innerText = "";
+          // document.getElementById('customer-cart').textContent = ""; 
+          // document.getElementById('check-out').style.display = 'none';
 
         } else {
           let productRow = "";
@@ -114,7 +118,7 @@
                            <td>
                            <div>
                           <button class="btn btn-primary decQty"  
-                              onclick=decQuantity("${product._id}",${product.quantity})> - </button>
+                              onclick=decQuantity("${product._id}",${product.quantity})> ━ </button>
                           <span class="quantity"> ${product.quantity} </span>
                           <button class="btn btn-primary incQty" onclick=incQuantity("${product._id}")> + </button>
                         </div>
@@ -127,7 +131,7 @@
                         </tr>`;
           });
           document.querySelector('#customer-cart tbody').innerHTML = productRow;
-          calculateBill();
+
           calcSubtotal();
           document.getElementById("cart-cntr").innerText = response.data.cartCnt;
         }
@@ -152,7 +156,6 @@
   */
   const incQuantity = id => {
 
-    //const urlId = `http://localhost:3000/cart/incQty/${id}`;
     const urlId = `{{envUrl}}/cart/incQty/${id}`;
     axios
       .get(urlId)
@@ -165,7 +168,7 @@
             ele.querySelector('.quantity').textContent = response.data.retProduct[0].quantity;
           }
         });
-        calculateBill();
+
         calcSubtotal();
 
         document.getElementById("cart-cntr").innerText = response.data.cartCnt;
@@ -179,7 +182,8 @@
   *  calculates the total cost of the cart items: 
   * ==========================================
    */
-  const calculateBill = () => {
+  /*
+const calculateBill = () => {
     let totalCost = 0;
     document.querySelectorAll("#customer-cart tbody .product").forEach(ele => {
       const qty = ele.getElementsByClassName("quantity")[0].innerText;
@@ -189,7 +193,7 @@
     document.getElementById("total").innerText = totalCost.toFixed(2);
 
   }
-
+*/
   /**==========================================
 * 
 *  calculates the subtotal of each product in the cart: 
@@ -197,15 +201,16 @@
  */
   const calcSubtotal = () => {
     let subtotal = 0;
+    let totalCost = 0;
     const elements = document.querySelectorAll("#customer-cart tbody .product")
     elements.forEach(ele => {
       let qty = ele.getElementsByClassName("quantity")[0].innerText;
       let price = ele.getElementsByClassName("price")[0].innerText;
       subtotal = (qty * price);
-      //console.log(`SUBTOTAL ${subtotal} `)
       ele.getElementsByClassName("subtotal")[0].innerText = `€ ${subtotal.toFixed(2)} `
-
-    })
+      totalCost += subtotal;
+    });
+    document.getElementById("total").innerText = totalCost.toFixed(2);
   }
 
 
@@ -215,10 +220,9 @@
   * ==========================================
    */
   const decQuantity = (id, qty) => {
-    // console.log(qty);
     if (qty <= 1) {
-      let qtyAlert = ` < p class="alert alert-danger" id = "cart-alert-msg" > Minimum quantity should be 1!!
-    < button  class="btn btn-primary"  onclick = "clearAlert()" > OK </button > </p > ` ;
+      let qtyAlert = `<p class="alert alert-danger" id = "cart-alert-msg" > Minimum quantity should be 1!!
+    <button  class="btn btn-primary"  onclick = "clearAlert()" > OK </button> </p>` ;
       document.getElementById("cart-alert").innerHTML = qtyAlert;
       return;
     }
@@ -236,7 +240,7 @@
             ele.querySelector(`.decQty`).setAttribute('onclick', `decQuantity("${id}", "${response.data.retProduct[0].quantity}")`);
           }
         });
-        calculateBill();
+
         calcSubtotal();
         document.getElementById("cart-cntr").innerText = response.data.cartCnt;
       })
