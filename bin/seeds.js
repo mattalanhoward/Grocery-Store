@@ -148,7 +148,7 @@ const products = [
     name: "Roast Beef",
     imageUrl:
       "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/roast-beef_ugfc86.jpg",
-    category: "vegetables",
+    category: "meat",
     price: 9.81,
   },
   {
@@ -168,7 +168,7 @@ const products = [
   {
     name: "Salmon",
     imageUrl:
-      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/whole-chicken_me0v7w.jpg",
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599307961/farm-grocery/salmon_roie9x.jpg",
     category: "meat",
     price: 5.50,
   },
@@ -179,6 +179,42 @@ const products = [
     category: "meat",
     price: 4.37,
   },
+  {
+    name: "Multigrain Bread",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599492628/multigrain_tkslfq.jpg",
+    category: "breads",
+    price: 2.19,
+  },
+  {
+    name: "Raisin Bread",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599492628/raisen_fuprus.jpg",
+    category: "breads",
+    price: 2.19,
+  },
+  {
+    name: "Sunflower Bread",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599492628/sunflower-bread_u2aca8.jpg",
+    category: "breads",
+    price: 1.99,
+  },
+  {
+    name: "Krenten Bollen",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599492628/krenten-bollen_qg1g8m.jpg",
+    category: "breads",
+    price: 1.49,
+  },
+  {
+    name: "Dark Bread",
+    imageUrl:
+      "https://res.cloudinary.com/dcod1zxnl/image/upload/v1599492628/dark-bread_gmbgda.jpg",
+    category: "breads",
+    price: 1.04,
+  },
+
 
 ];
 
