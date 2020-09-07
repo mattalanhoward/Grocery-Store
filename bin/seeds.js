@@ -23,7 +23,7 @@ const products = [
     imageUrl:
       "https://res.cloudinary.com/dcod1zxnl/image/upload/v1598207906/kiwi_qvqps6.jpg",
     category: "fruits",
-    price: 0.5,
+    price: 0.50,
   },
   {
     name: "Mango",

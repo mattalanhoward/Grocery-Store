@@ -1,81 +1,81 @@
 {{!--views/auth/signup.hbs --}}
-<div class="register container-fluid">
+<section class="register container-fluid">
   <form class="login-container" action="/register" method="POST">
 
     <div id="input-container" class="bg light-brown p-3 rounded">
       <h3 class="text-center p-3"> Register </h3>
       <!-- First Name -->
       <div class="form-group row">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="firstname">First Name<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="firstname">First Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="text" name="firstname" placeholder="Enter First name">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
       <!-- Last Name -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="lastname">Last Name<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="lastname">Last Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="text" name="lastname" placeholder="Enter Last name">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
       <!-- EmailID -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="email">E-mail Address<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="email">E-mail Address<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="text" name="email" placeholder="Email Address">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
 
       <!-- Password  -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="password">Password<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="password">Password<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="password" name="password" placeholder="Enter password">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
 
       <!-- retype password  -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="rePassword">Retype Password<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="rePassword">Retype Password<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="password" name="rePassword" placeholder="Confirm Password">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
 
       <!-- Address -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="address">Address<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="address">Address<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="text-area" name="address" placeholder="Enter Full Address">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
 
       <!-- Phone number -->
       <div class="form-group row ">
-        <div class="col-md-3"></div>
-        <label class="col-md-2" for="phone">Phone Number<span class="mandatory-color "> * </span></label>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <label class="col-md-3" for="phone">Phone Number<span class="mandatory-color "> * </span></label>
+        <div class="col-md-5">
           <input class="form-control" type="text" name="phone" placeholder="Enter Phone Number">
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
       </div>
 
 
@@ -86,10 +86,16 @@
         <div class="col-md-5"></div>
       </div>
 
+      <div class="row">
+        <div class="col-md-4"></div>
+          <p class="col-md-4 text-center">Already signed up?  <a href="/login">Login</a></p>
+        <div class="col-md-4"></div>
+      </div>
+
       {{#if errorMessage}}
       <p class="alert alert-danger text-center">{{errorMessage}}</p>
       {{/if}}
 
     </div>
   </form>
-</div>
+</section>
