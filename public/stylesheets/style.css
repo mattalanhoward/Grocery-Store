@@ -13,15 +13,18 @@ rgb(108 144 126) */
 /* wht
 #dfe3e4 */
 
+/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 html{
   height: 100%;
-  
 }
-
 
 body {
   background-color: #f5f6f7;
   height: 100%;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .height{
