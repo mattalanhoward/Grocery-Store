@@ -17,7 +17,9 @@
         <h1 class = "display-2 ">Healthy</h1>
         <h3>Fresh, Organic Produce</h3>
         {{#if currentUser}}
-        <br>
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
+        </a>
         <br>
         {{else}}
         <a href="./register">
@@ -31,8 +33,10 @@
       <div class="carousel-caption d-none d-md-block">
         <h1 class = "display-2">Local</h1>
         <h3>From our Family to Yours</h3>
-                {{#if currentUser}}
-        <br>
+        {{#if currentUser}}
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
+        </a>
         <br>
         {{else}}
         <a href="./register">
@@ -47,11 +51,13 @@
         <h1 class = "display-2">FARM GROCER</h1>
         <h3>Good for you and for the Earth</h3>
         {{#if currentUser}}
-          <br>
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-lg">Go To Shop</button>
+        </a>
           <br>
         {{else}}
         <a href="./register">
-          <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
+          <button type="button" class="btn btn-outline-light btn-xl">Join Us</button>
         </a>
         {{/if}}
       </div>
@@ -70,7 +76,7 @@
 
 <!--- Mobile Welcome --->
 <section class="mobile mt-3">
-  <h1 class="text-center kenburns-top ">Welcome to <br> Farm Grocer</h1>
+  <h1 class="text-center kenburns-top">Welcome to <br> Farm Grocer</h1>
   <div>
 
   </div>
