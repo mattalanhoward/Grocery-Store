@@ -13,7 +13,7 @@
 
 
 <div class="m-2 text-center" id="cart-alert"> </div>
-<div id="cart-div">
+<div id="cart-div" class="height">
   <table class="table container-fluid" id="customer-cart">
     <thead class="thead-light">
       <tr>
@@ -25,7 +25,7 @@
       </tr>
     </thead>
 
-    <tbody class="height">
+    <tbody>
       {{#each products }}
       <tr class="product">
         <td> {{ productId.name}} </td>
