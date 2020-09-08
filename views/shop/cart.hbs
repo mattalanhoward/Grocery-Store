@@ -25,13 +25,13 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="height">
       {{#each products }}
       <tr class="product">
         <td> {{ productId.name}} </td>
         <td>
           <div>
-            <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> ━
+            <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
             </button>
             <span class="quantity"> {{ quantity}} </span>
             <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
@@ -84,7 +84,7 @@
   const deleteProduct = id => {
     console.log("deleteProduct clicked --")
     //confirmation of deletion
-    let delAlert = ` <p class="alert alert-danger" id="cart-alert-msg"> Do you want to delete product from the cart ?
+    let delAlert = ` <p class="alert alert-danger text-center" id="cart-alert-msg"> Do you want to delete product from the cart ?
                       <button  class="btn btn-primary"   onclick=delConfirmed("${id}")> YES </button>
                       <button  class="btn btn-primary"  onclick="clearAlert()"> NO </button>
                        </p>  ` ;
@@ -224,7 +224,7 @@ const calculateBill = () => {
    */
   const decQuantity = (id, qty) => {
     if (qty <= 1) {
-      let qtyAlert = `<p class="alert alert-danger" id = "cart-alert-msg" > Minimum quantity should be 1!!
+      let qtyAlert = `<p class="alert alert-danger text-center" id = "cart-alert-msg" > Minimum quantity should be 1!! <br> <br>
     <button  class="btn btn-primary"  onclick = "clearAlert()" > OK </button> </p>` ;
       document.getElementById("cart-alert").innerHTML = qtyAlert;
       return;

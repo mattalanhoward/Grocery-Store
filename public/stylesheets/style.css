@@ -24,7 +24,9 @@ body {
   height: 100%;
 }
 
-
+.height{
+  min-height:65vmin;
+}
 /*  WELCOME  */
 .welcome {
   margin: 100px 0;
@@ -37,8 +39,6 @@ body {
 h4 {
   font-size: 1rem;
 }
-
-
 
 .card-container {
   width: 80%;
@@ -237,6 +237,16 @@ width: 60%;
     width: 60%;
   }
 }
+
+/*IPAD*/
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+ .height{
+   min-height: 70vh;
+ };
+}
+
 
 /*large Phone and Smaller*/
 @media (max-width: 576px) {
