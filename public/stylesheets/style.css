@@ -187,6 +187,10 @@ footer{
   justify-content: center;
 }
 
+.about a{
+  color: inherit;  
+}
+
 
 /*LOGIN*/
 .login-container {
