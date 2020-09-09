@@ -6,7 +6,9 @@
 
 /* dark-brown */
 /* rgb(72,27,0) */
-
+.dark-brown{
+  color: rgb(72,27,0)
+}
 /* green
 rgb(108 144 126) */
 
@@ -33,6 +35,10 @@ body {
 /*  WELCOME  */
 .welcome {
   margin: 100px 0;
+}
+
+.carousel-caption{
+  margin-bottom:10%;
 }
 
 .mobile {
@@ -251,7 +257,10 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)  { 
  .height{
    min-height: 70vh;
- };
+ }
+ .carousel-caption{
+  margin-bottom:0;
+}
 }
 
 
