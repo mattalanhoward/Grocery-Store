@@ -75,11 +75,18 @@
 </section>
 
 <!--- Mobile Welcome --->
-<section class="mobile mt-3">
-  <h1 class="text-center kenburns-top">Welcome to <br> Farm Grocer</h1>
-  <div>
-
-  </div>
+<section class="mobile text-center mobile-head">
+  <h1 class="text-center">Welcome to <br> Farm Grocer</h1>
+        {{#if currentUser}}
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-lg">Go To Shop</button>
+        </a>
+          <br>
+        {{else}}
+        <a href="./register">
+          <button type="button" class="btn btn-outline-light btn-xl">Join Us</button>
+        </a>
+        {{/if}}
 </section>
 
 <!--- Welcome Section --->
