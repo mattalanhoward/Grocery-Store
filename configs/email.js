@@ -82,7 +82,7 @@ const sendWelcomeEmail = (shopCartDetails) => {
   let cardId = "ID_" + _id.toString().slice(0, 5).toUpperCase();
   console.log(email);
   sgmail.send({
-    to: email, //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com", //"mattalanhoward@gmail.com",
+    to: "mattalanhoward@gmail.com", //"mannam.sunithadasari@gmail.com", // email, //"mattalanhoward@gmail.com",  //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com",
     from: "mannam.sunitha@gmail.com",
     cc: "mattalanhoward@gmail.com",
     subject: "Invoice for your Order: " + cardId,
