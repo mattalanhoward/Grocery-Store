@@ -1,6 +1,13 @@
-const sessionMware = (req, res, next) => {
+/**
+ *
+ */
+const sessionAdmin = (req, res, next) => {
+  // console.log("inside sessionADmin:", req.session.currentUser);
+
   if (!req.session.currentUser) {
-    return res.redirect("/");
+    if (!req.session.currentUser.isAdmin) {
+      return res.redirect("/");
+    }
   } else {
     // const newDate = new Date();
     // console.log(
@@ -15,10 +22,5 @@ const sessionMware = (req, res, next) => {
   }
   next();
 };
-
-/**
- *
- */
-
 // export
-module.exports = sessionMware;
+module.exports = sessionAdmin;

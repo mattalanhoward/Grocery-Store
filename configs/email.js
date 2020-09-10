@@ -74,12 +74,18 @@ const sendWelcomeEmail = (shopCartDetails) => {
   console.log(shopCartDetails);
   const deliverInfo = frameEmailTemplate(shopCartDetails);
   console.log("inside send email:");
-  console.log(deliverInfo);
+  // console.log(deliverInfo);
+
+  const {
+    customerId: { _id, email },
+  } = shopCartDetails;
+  let cardId = "ID_" + _id.toString().slice(0, 5).toUpperCase();
+  console.log(email);
   sgmail.send({
-    to: "mannam.sunitha@gmail.com", //"mattalanhoward@gmail.com",
+    to: email, //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com", //"mattalanhoward@gmail.com",
     from: "mannam.sunitha@gmail.com",
-    cc: "nagaraju.dasari@gmail.com",
-    subject: "Send Grid Email test",
+    cc: "mattalanhoward@gmail.com",
+    subject: "Invoice for your Order: " + cardId,
     content: [{ type: "text/html", value: deliverInfo }],
   });
   console.log("email sent successfully ");

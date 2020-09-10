@@ -21,12 +21,12 @@ const productSchema = new Schema(
     },
     imageUrl: {
       type: String,
-      match: /^https?:\/\//,
+      // match: /^https?:\/\//,
     },
 
     category: {
       type: String,
-      enum: ["fruits", "vegetables"],
+      enum: ["fruits", "vegetables", "breads", "meat"],
     },
     price: Number,
   },

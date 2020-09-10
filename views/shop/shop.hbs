@@ -1,4 +1,3 @@
-
 <div class="my-3">
   <h1 class="text-center">Welcome to the Shop</h1>
   <hr>
@@ -6,17 +5,17 @@
     {{#each productsList}}
     <div class="card card-shop p-3">
       <div class="card-body text-center">
-        
+
         <form action="/shop/{{_id}}" method="POST">
           <h4> {{name}} </h4>
           <img class="rounded" src={{imageUrl}}>
-          <h5 class="m-1">${{price}}</h5>
-          <button class="btn-primary m-1 p-2"type="submit">Add To cart</button>
+          <h5 class="m-1">€{{price}}</h5>
+          <button class="btn-primary m-1 p-2" type="submit">Add To cart</button>
         </form>
 
       </div>
     </div>
-{{/each}}
+    {{/each}}
   </div>
   <hr>
 </div>

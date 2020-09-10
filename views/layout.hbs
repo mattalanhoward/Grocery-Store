@@ -42,9 +42,25 @@
           <li class="nav-item">
             <a class="nav-link" href="/edit-profile">Edit Profile</a>
           </li>
+          {{#unless currentUser.isAdmin}}
           <li class="nav-item">
             <a class="nav-link" href="/shop">Shop</a>
           </li>
+          {{/unless}}
+          {{#if currentUser.isAdmin}}
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle nav-link " data-toggle="dropdown" href="#">Products</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item">
+                <a class="nav-link dropdown-item" href="/product/create">create Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown-item" href="/product/list">List Products</a>
+              </li>
+            </ul>
+          </li>
+          {{/if}}
+          {{#unless currentUser.isAdmin}}
           <li class="nav-item dropdown">
             <a class="dropdown-toggle nav-link " data-toggle="dropdown" href="#">Categories</a>
             <ul class="dropdown-menu">
@@ -62,6 +78,7 @@
               </li>
             </ul>
           </li>
+          {{/unless}}
           {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
@@ -77,10 +94,11 @@
         </ul>
       </div>
       {{#if currentUser}}
+      {{#unless currentUser.isAdmin}}
       <h2><a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"> <span>
               <sub> <small> <strong id="cart-cntr">{{cartCnt}}</strong></small> </sub>
             </span></i></a></h2>
-      {{/if}}
+      {{/unless}} {{/if}}
     </div>
   </nav>
 

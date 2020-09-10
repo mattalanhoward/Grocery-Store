@@ -1,0 +1,130 @@
+<div class="my-3">
+  <h1 class="text-center">List of products</h1>
+  <hr>
+  <div class="m-2" id="shop-alert"> </div>
+  <div id="shop-div">
+    <table class="table container-fluid" id="product-list">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Product Name</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Price/kg</th>
+          <th scope="col">category</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each productsList }}
+        <tr class="product">
+          <td>
+            <p>{{this.name}}</p>
+          </td>
+          <td id="img-container">
+            <div>
+              <img class="rounded " id="checkout-img" src={{this.imageUrl}}>
+            </div>
+          </td>
+          <td>
+            <h4> {{ this.price}} </h4>
+          </td>
+          <td>
+            <div>
+              <h4> {{ this.category}} </h4>
+            </div>
+          </td>
+          <td>
+            <a class="btn btn-primay fa fa-pencil-square-o fa-2x" href="/product/edit/{{this._id}}"> </a>
+            {{!-- <button class="btn btn-primay fa fa-pencil-square-o fa-2x" onclick=editProduct("{{this._id}}")> </button> --}}
+          </td>
+          <td>
+            <button class="btn btn-danger" onclick=deleteProductFromShop("{{this._id}}")>
+              X</button>
+          </td>
+          <input type="hidden" class="productId" name="productId" value={{this._id}}>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <hr>
+  </div>
+</div>
+
+{{#if errorMessage}}
+<p class="alert alert-danger">{{errorMessage}}</p>
+{{/if}}
+
+<script>
+  /* =====================================
+  *  Clears the alert message 
+  *  =========================================
+  */
+  const clearAlert = () => {
+    document.getElementById("shop-alert-msg").style.display = 'none';
+    document.getElementById("shop-alert").innerText = "";
+  }
+
+  /**==========================================
+  *  triggers when "delete" button is clicked and gives a confrimation message 
+  * ==========================================
+  */
+  const deleteProductFromShop = id => {
+    console.log(" Admin delete Product clicked --")
+    //confirmation of deletion
+    let delAlert = `<p class="alert alert-danger" id="shop-alert-msg"> Do you want to delete product from the Shop ?
+                      <button  class="btn btn-primary"  onclick=delShopProductConfirmed("${id}")> YES </button>
+                      <button  class="btn btn-primary"  onclick="clearAlert()"> NO </button>
+                       </p>` ;
+    document.getElementById("shop-alert").innerHTML = delAlert;
+  }
+
+  /**==========================================
+  *  triggers when "delete" confirmation is clicked     
+  * ==========================================
+  */
+  const delShopProductConfirmed = id => {
+    clearAlert();
+    let urlId = `{{envUrl}}/product/deleteProduct/${id}`;
+    console.log(urlId);
+    axios
+      .delete(urlId)
+      .then(response => {
+
+        if (!response.data.resAfterDel) {
+
+        } else {
+          // REMOVE THE TD WITHT HE RESULT ID
+          let tabl = document.querySelectorAll("#product-list .productId");
+          const idDelFromServer = response.data.resAfterDel._id;
+
+          tabl.forEach((ele) => {
+            if (ele.value === idDelFromServer) {
+              console.log(" match found");
+              ele.parentElement.remove();
+            }
+          });
+
+          tabl = document.querySelectorAll("#product-list .productId");
+
+          if (tabl.length === 0) {
+            document.getElementById("shop-div").innerHTML = "";
+            document.getElementById("shop-div").innerHTML = `<h2 class="alert alert-danger " id="shop-empty-msg"> There are no products in your Shop !!
+              <button  class="btn btn-primary"   onclick = clearShopEmpty() > OK </button>              
+                       </h2 >`;
+          }
+        }
+      })
+      .catch(err => console.log(`Err while deleting product: ${err}`));
+  };
+
+  /**==========================================
+   *   clears the "shop is empty" message    
+   * ==========================================
+   */
+  const clearShopEmpty = () => {
+    document.getElementById("shop-empty-msg").remove();
+  }
+
+
+
+</script>

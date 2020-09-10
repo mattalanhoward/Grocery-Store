@@ -1,0 +1,72 @@
+{{!--views/product/product-create.hbs --}}
+<div class="register container-fluid">
+  <form class="login-container" action="/product/create" method="POST" enctype="multipart/form-data">
+
+    <div id="input-container" class="bg light-brown p-3 rounded">
+      <h3 class="text-center p-3"> Create a new Product </h3>
+
+      <!-- Product Name -->
+      <div class="form-group row">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="productname">Product Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="productname" placeholder="Enter Product name">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+      <!-- Product price -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="price">Price per kg<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="price" placeholder="Enter Product price">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+      <!-- Product Image -->
+      <div class="form-group row">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="productImage" class="mandatory-color">Choose Product Image </label>
+        <div class="col-md-4">
+          <input type="file" name="productImage" id="prod-image" class="form-control-file" />
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+
+      <!-- Category  -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="category"> Choose Category <span class="mandatory-color"> * </span></label>
+        <div class="col-md-4">
+          <select id="category" name="category">
+            <option selected value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="breads">Breads</option>
+            <option value="meat">meat</option>
+          </select>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+      <!--- button --->
+      <div class="form-group row">
+        <div class="col-md-5"></div>
+        <button type="submit" class="btn btn-primary col-md-2 m-3">Create Product</button>
+        <div class="col-md-5"></div>
+      </div>
+
+      {{#if errorMessage}}
+      <p class="alert alert-danger text-center">{{errorMessage}}</p>
+      {{/if}}
+
+      {{#if successMessage}}
+      <p class="alert alert-success text-center">{{successMessage}}</p>
+      {{/if}}
+
+    </div>
+  </form>
+</div>

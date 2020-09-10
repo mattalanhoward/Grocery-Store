@@ -15,6 +15,7 @@ const app = express();
 require("./configs/db.config");
 require("./configs/session.config")(app);
 
+const categoriesList = ["fruits", "vegetables", "breads", "meat"];
 // Middleware Setup
 app.use(logger("dev"));
 app.use(express.json());
@@ -28,8 +29,14 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "logo1.png")));
 
-hbs.registerHelper("checkQuantity", function (quantity) {
-  return quantity <= 1 ? true : false;
+hbs.registerHelper("categorySelect", function (value) {
+  let retEle = "";
+  categoriesList.forEach((ele) => {
+    retEle += `<option value="${ele}" `;
+    retEle += value === ele ? " selected " : " ";
+    retEle += `>  ${ele}  </option>`;
+  });
+  return retEle;
 });
 
 // default value for title local
@@ -49,5 +56,5 @@ app.use("/edit-profile", require("./routes/profile.routes"));
 app.use("/shop", require("./routes/shop.routes"));
 app.use("/cart", require("./routes/cart.routes"));
 app.use("/categories", require("./routes/shop.routes"));
-
+app.use("/product", require("./routes/product.routes"));
 module.exports = app;

@@ -1,0 +1,79 @@
+{{!--views/product/product-edit.hbs --}}
+<div class="register container-fluid">
+  <form class="login-container" action="/product/edit" method="POST" enctype="multipart/form-data">
+
+    <div id="input-container" class="bg light-brown p-3 rounded">
+      <h3 class="text-center p-3"> Edit the Product </h3>
+
+      <!-- Product Name -->
+      <div class="form-group row">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="productname">Product Name<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" name="productname" value="{{productToEdit.name}}"
+            placeholder="Enter Product name">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+      <!-- Product price -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="price">Price per kg<span class="mandatory-color "> * </span></label>
+        <div class="col-md-4">
+          <input class="form-control" type="text" value="{{productToEdit.price}}" name="price"
+            placeholder="Enter Product price">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+      <!-- Product Image -->
+      <div class="form-group row">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="productImage" class="mandatory-color">Choose Product Image </label>
+        <div class="col-md-4">
+          <input type="file" name="image" id="productImage" class="form-control-file" />
+          <input type="text" name="existingImage" hidden value="{{productToEdit.imageUrl}}">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+
+
+
+
+      <!-- Category  -->
+      <div class="form-group row ">
+        <div class="col-md-3"></div>
+        <label class="col-md-2" for="category">Choose Category<span class="mandatory-color"> * </span></label>
+        <div class="col-md-4">
+          <select id="category" name="category" value="{{productToEdit.category}}">
+            {{#categorySelect productToEdit.category}} {{/categorySelect}}
+          </select>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <!-- _ID  -->
+      <input type="hidden" class="productId" name="productId" value={{productToEdit._id}}>
+
+      <!--- button --->
+      <div class="form-group row">
+        <div class="col-md-5"></div>
+        <button type="submit" class="btn btn-primary col-md-2 m-3">Update Product</button>
+        <div class="col-md-5"></div>
+      </div>
+
+      {{#if errorMessage}}
+      <p class="alert alert-danger text-center">{{errorMessage}}</p>
+      {{/if}}
+
+      {{#if successMessage}}
+      <div>
+        <p class="alert alert-success text-center">{{successMessage}}
+          <a class="btn btn-primary text-center m-3" href="/product/list/"> View roducts </a>
+        </p>
+      </div>
+      {{/if}}
+
+    </div>
+  </form>
+</div>
