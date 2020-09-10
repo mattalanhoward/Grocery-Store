@@ -45,6 +45,15 @@ router.post("/", (req, res) => {
     phone === ""
   ) {
     res.render("auth/register", {
+      userDetails: {
+        fname,
+        lname,
+        email,
+        password,
+        rePassword,
+        address,
+        phone,
+      },
       errorMessage: "Please enter the mandatory fields",
     });
     return;
@@ -53,6 +62,15 @@ router.post("/", (req, res) => {
   // Check whether both passwords are matching
   if (password !== rePassword) {
     res.render("auth/register", {
+      userDetails: {
+        fname,
+        lname,
+        email,
+        password,
+        rePassword,
+        address,
+        phone,
+      },
       errorMessage: "Both passwords are not same",
     });
     return;
@@ -61,21 +79,28 @@ router.post("/", (req, res) => {
   // Check for "Speacial characters in password"
   if (!regex.test(password)) {
     res.status(500).render("auth/register", {
+      userDetails: {
+        fname,
+        lname,
+        email,
+        password,
+        rePassword,
+        address,
+        phone,
+      },
       errorMessage:
         "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });
     return;
   }
   // generate hash keys
-  // console.log("before ecnrypting ... ");
+
   bcryptjs
     .genSalt(saltRounds)
     .then((salt) => {
-      // console.log("salt generated", password);
       return bcryptjs.hash(password, salt);
     })
     .then((hashedPassword) => {
-      // console.log("hashedPassword: ", hashedPassword);
       return userModel.create({
         firstName: fname,
         lastName: lname,
@@ -87,7 +112,7 @@ router.post("/", (req, res) => {
     })
     .then((resultfromDB) => {
       if (resultfromDB) {
-        console.log("User is successfully created.... ");
+        // console.log("User is successfully created.... ");
         res.render("auth/login", {
           regSuccessMsg:
             "Congratulations!! you are successfully registered to Farm Grocer",

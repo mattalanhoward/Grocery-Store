@@ -1,73 +1,73 @@
 <section>
-{{#if infoMessage}}
-<p class="alert alert-success">{{infoMessage}}</p>
-{{/if}}
+  {{#if infoMessage}}
+  <p class="alert alert-success">{{infoMessage}}</p>
+  {{/if}}
 
-{{#if errorMessage}}
-<p class="alert alert-danger">{{errorMessage}}</p>
-{{/if}}
+  {{#if errorMessage}}
+  <p class="alert alert-danger">{{errorMessage}}</p>
+  {{/if}}
 
-{{#if products}}
+  {{#if products}}
 
-<div class="m-2" id="cart-alert"> </div>
+  <div class="m-2" id="cart-alert"> </div>
 
 
-<div class="m-2 text-center" id="cart-alert"> </div>
-<div id="cart-div" class="height">
-  <table class="table container-fluid" id="customer-cart">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">Product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price/kg</th>
-        <th scope="col">Subtotal</th>
-        <th scope="col">Remove</th>
-      </tr>
-    </thead>
+  <div class="m-2 text-center" id="cart-alert"> </div>
+  <div id="cart-div" class="height">
+    <table class="table container-fluid" id="customer-cart">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price/kg</th>
+          <th scope="col">Subtotal</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      {{#each products }}
-      <tr class="product">
-        <td> {{ productId.name}} </td>
-        <td>
-          <div>
-            <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
-            </button>
-            <span class="quantity"> {{ quantity}} </span>
-            <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
-          </div>
-        </td>
-        <td>€ <span class="price">{{productId.price}}</span></td>
-        <td> <span class="subtotal"></span></td>
-        <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
-          <input type="hidden" id="productId" name="productId" value={{productId._id}}>
-        </td>
-      </tr>
-      {{/each}}
+      <tbody>
+        {{#each products }}
+        <tr class="product">
+          <td> {{ productId.name}} </td>
+          <td>
+            <div>
+              <button class="btn btn-primary decQty" onclick=decQuantity("{{productId ._id}}",{{ quantity}})> -
+              </button>
+              <span class="quantity"> {{ quantity}} </span>
+              <button class="btn btn-primary incQty" onclick=incQuantity("{{productId._id}}")> + </button>
+            </div>
+          </td>
+          <td>€ <span class="price">{{productId.price}}</span></td>
+          <td> <span class="subtotal"></span></td>
+          <td> <button class="btn btn-danger" onclick=deleteProduct("{{productId._id}}")> X</button>
+            <input type="hidden" id="productId" name="productId" value={{productId._id}}>
+          </td>
+        </tr>
+        {{/each}}
 
-    </tbody>
+      </tbody>
 
-    <tfoot>
-      <!--  onload="calculateBill" -->
-      <tr>
-        <td>Total :</td>
-        <td></td>
-        <td></td>
-        <td>€ <span id="total"> </span></td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
+      <tfoot>
+        <!--  onload="calculateBill" -->
+        <tr>
+          <td>Total :</td>
+          <td></td>
+          <td></td>
+          <td>€ <span id="total"> </span></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
 
-  <div class="text-center m-3">
-    <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
-    {{/if}}
-    <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
+    <div class="text-center m-3">
+      <a class="btn btn-primary" href="/cart/check-out/{{cartId}}"> Place Order </a>
+      {{/if}}
+      <a class="btn btn-primary" href="/shop/"> Back to Shop </a>
 
-    {{#if products}}
+      {{#if products}}
+    </div>
+
   </div>
-
-</div>
 </section>
 
 
@@ -82,7 +82,7 @@
   * ==========================================
   */
   const deleteProduct = id => {
-    console.log("deleteProduct clicked --")
+    // console.log("deleteProduct clicked --")
     //confirmation of deletion
     let delAlert = ` <p class="alert alert-danger text-center" id="cart-alert-msg"> Do you want to delete product from the cart ?
                       <button  class="btn btn-primary"   onclick=delConfirmed("${id}")> YES </button>
@@ -108,9 +108,9 @@
         // console.log(response);
         if (response.data.prodList.length === 0) {
           console.log(" no products in cart ")
-          document.getElementById('cart-div').innerText = "";
-          // document.getElementById('customer-cart').textContent = ""; 
-          // document.getElementById('check-out').style.display = 'none';
+          document.getElementById('cart-div').innerHTML =
+            `<p class="alert alert-success"> No Products in your cart </p>
+              < a class="btn btn-primary" href = "/shop/" > Back to Shop </a >`;
 
         } else {
           let productRow = "";
@@ -134,10 +134,9 @@
                         </tr>`;
           });
           document.querySelector('#customer-cart tbody').innerHTML = productRow;
-
           calcSubtotal();
-          document.getElementById("cart-cntr").innerText = response.data.cartCnt;
         }
+        document.getElementById("cart-cntr").innerText = response.data.cartCnt;
       })
       .catch(err => console.log(`Err while deleting product: ${err}`));
 
