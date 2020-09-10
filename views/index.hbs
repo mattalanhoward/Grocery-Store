@@ -1,7 +1,7 @@
 
 <!--- Carousel --->
 
-<div id="slides" class="carousel slide" data-ride="carousel">
+<section id="slides" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#slides" data-slide-to="0" class="active"></li>
     <li data-target="#slides" data-slide-to="1"></li>
@@ -12,12 +12,14 @@
   <!--- Carousel Images --->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="kenburns-top-left" src="images/Carousel/slide8.jpg">
+      <img class="kenburns-top-left overlay " src="images/Carousel/slide8.jpg">
       <div class="carousel-caption">
         <h1 class = "display-2 ">Healthy</h1>
-        <h3>Fresh, Organic Produce</h3>
+        <h3>Fresh, Organic Produce, Meats, and Bread</h3>
         {{#if currentUser}}
-        <br>
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
+        </a>
         <br>
         {{else}}
         <a href="./register">
@@ -27,12 +29,14 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img class="kenburns-right" src="images/Carousel/slide7.jpg">
+      <img class="kenburns-right overlay" src="images/Carousel/slide7.jpg">
       <div class="carousel-caption d-none d-md-block">
         <h1 class = "display-2">Local</h1>
         <h3>From our Family to Yours</h3>
-                {{#if currentUser}}
-        <br>
+        {{#if currentUser}}
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
+        </a>
         <br>
         {{else}}
         <a href="./register">
@@ -42,16 +46,18 @@
      </div>
     </div>
     <div class="carousel-item">
-      <img class="kenburns-top" src="images/Carousel/slide1.jpg">
+      <img class="kenburns-top overlay" src="images/Carousel/slide1.jpg">
       <div class="carousel-caption d-none d-md-block">
-        <h1 class = "display-2">FARM GROCER</h1>
-        <h3>Good for you and for the Earth</h3>
+        <h1 class = "display-2 dark-brown">FARM GROCER</h1>
+        <h3 class="dark-brown">Good for you and for the Earth</h3>
         {{#if currentUser}}
-          <br>
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-lg">Go To Shop</button>
+        </a>
           <br>
         {{else}}
         <a href="./register">
-          <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
+          <button type="button" class="btn btn-outline-light btn-xl">Join Us</button>
         </a>
         {{/if}}
       </div>
@@ -66,18 +72,25 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</section>
 
 <!--- Mobile Welcome --->
-<div class="mobile mt-3">
-  <h1 class="text-center kenburns-top ">Welcome to <br> Farm Grocer</h1>
-  <div>
-
-  </div>
-</div>
+<section class="mobile text-center mobile-head">
+  <h1 class="text-center">Welcome to <br> Farm Grocer</h1>
+        {{#if currentUser}}
+        <a href="./shop">
+          <button type="button" class="btn btn-light btn-lg">Go To Shop</button>
+        </a>
+          <br>
+        {{else}}
+        <a href="./register">
+          <button type="button" class="btn btn-outline-light btn-xl">Join Us</button>
+        </a>
+        {{/if}}
+</section>
 
 <!--- Welcome Section --->
-<div class="">
+<section>
   <div class="container-fluid row welcome text-center">
     <div class="col-12">
       <h1 class="display-4">From our Farms to your table</h1>
@@ -88,7 +101,8 @@
       Delivered from the farm to your doorstep.  Eco friendly, biodegradable packaging.  Healthy for you and for the Earth.</p>
   </div>
   </div>
-</div>
+</section>
+
 <hr class="my-3">
 
 
@@ -96,13 +110,13 @@
 <div class="container-fluid">
   <div class="row text-center">
     <div class="col-12">
-      <h4 class="display-4 my-5">A Taste of Our Menu</h4>
+      <h4 class="display-4 my-3">A Taste of Our Menu</h4>
     </div>
   </div>
 </div>
 
-<div class="container-fluid ">
-<div class="row text-center ">
+<section class="container-fluid ">
+<div class="row text-center m-3">
 
   <div class="col-xs-12 col-sm-6 col-md-3">
     <h3>Fruits</h3>
@@ -126,7 +140,7 @@
   </div>
 
 </div>
-</div>
+</section>
 
 <hr class="my-3">
 
@@ -146,34 +160,33 @@
 <div class="container-fluid ">
   <div class="row text-center">
     <div class="col-12">
-      <h4 class="display-4 my-3">Services</h4>
+      <h4 class="display-4">Services</h4>
     </div>
   </div>
 </div>
 
-<div class="container-fluid ">
 <div class="services row text-center p-5">
 
-  <div class="col-xs-12 col-sm-6 col-md-4">
+  <div>
     {{!-- <h3>Certified Organic</h3> --}}
     <img src="images/tractor-solid.svg" alt="tractor">
-    <p>The Best Meats, Produce and Grains</p>
+    <p>Farm Fresh Products</p>
   </div>
-  <div class="w-100"></div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
+  
+  <div>
     {{!-- <h3>Free Delivery</h3> --}}
     <img src="images/truck-solid.svg" alt="truck">
-    <p>Delivered to your home for free</p>
+    <p>Free Delivery</p>
   </div>
-    <div class="w-100"></div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
+ 
+  <div>
     {{!-- <h3>Home</h3> --}}
     <img src="images/home-solid.svg" alt="house">
     <p>Satisfaction Guaranteed</p>
   </div>
 
 </div>
-</div>
+
 <hr class="my-3">
 
 

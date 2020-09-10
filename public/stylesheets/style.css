@@ -5,15 +5,40 @@
 /* rgb(231, 197, 161) */
 
 /* dark-brown */
-/* rgb(81,32,4) */
+/* rgb(72,27,0) */
+.dark-brown{
+  color: rgb(72,27,0)
+}
+/* green
+rgb(108 144 126) */
 
-body {
-  background-color: rgb(249, 238, 227);
+/* wht
+#dfe3e4 */
+
+/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html{
+  height: 100%;
 }
 
+body {
+  background-color: #f5f6f7;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.height{
+  min-height:65vmin;
+}
 /*  WELCOME  */
 .welcome {
   margin: 100px 0;
+}
+
+.carousel-caption{
+  margin-bottom:10%;
 }
 
 .mobile {
@@ -24,29 +49,24 @@ h4 {
   font-size: 1rem;
 }
 
-/* a.nav-link {
-text-align: right;
-} */
-
 .card-container {
   width: 80%;
-  border: 2px solid rgb(81, 32, 4);
-  background-color: rgb(231, 197, 161);
+  background-color: #e1e7e9;
   margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
-  align-items: space-evenly;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .card-shop {
-  border: 1px solid rgb(231, 197, 161);
   max-width: 225px;
   margin: 20px;
 }
 
 .fa-shopping-cart {
-  color: rgb(81, 32, 4);
+  color: rgb(72,27,0);
 }
 
 img {
@@ -57,24 +77,30 @@ img {
   color: red;
   font-weight: 900;
 }
+
+.add-to-cart{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+
+}
+
 .btn-primary {
-  /* background-color: rgb(81,32,4);
- border: rgb(231, 197, 161) */
-  border-radius: 20px;
-  background-color: rgb(231, 197, 161);
+  background-color: rgb(108 144 126);
   border: 2px solid rgb(81, 32, 4);
   color: black;
 }
 
 .btn-primary:hover {
-  background-color: rgb(81, 32, 4);
-  color: white;
+  background-color: rgb(72,27,0);
+  color: #e1e7e9;
   border: 2px solid rgb(231, 197, 161);
 }
 
 .btn-primary:focus {
-  background-color: rgb(81, 32, 4);
-  color: white;
+  background-color: rgb(72,27,0);
+  color: #e1e7e9;
   border: 2px solid rgb(231, 197, 161);
   outline-color: #a75000;
 }
@@ -104,9 +130,10 @@ img {
   width: 100px;
 }
 
+
 /* Parallax Section */
 #plx {
-  margin: 100px 0px;
+  margin: 50px 0px;
   background: url(../images/Carousel/slide9.jpg);
   background-attachment: fixed;
   background-position: center;
@@ -125,7 +152,9 @@ img {
   font-weight: bold;
 }
 
-.services {
+
+/*SERVICES*/
+/* .services {
   color: white;
   font-size: 24px;
   height: 800px;
@@ -135,19 +164,45 @@ img {
   background-repeat: no-repeat;
   background-size: cover;
   align-items: center;
+} */
+
+.service-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.services{
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .services img {
-  color: white;
-  width: 80px;
-  height: auto;
+  width: auto;
+  height: 80px;
 }
+
+footer{
+  margin: 0px;
+  width: 100%;
+  color: #dfe3e4;
+  background-color: rgb(72,27,0);
+  display: flex;
+  justify-content: center;
+}
+
+.about a{
+  color: inherit;  
+}
+
 
 /*LOGIN*/
 .login-container {
   width: 80%;
   padding: 50px;
-  margin: 25px auto;
+  margin: auto;
   border-radius: 5px;
 }
 
@@ -159,10 +214,7 @@ img {
 }
 
 .light-brown {
-  /* background-color: #b5d3e7;
-  opacity: 0.9; */
   background-color: rgba(231, 197, 161, 0.9);
-  /* background-color: rgba(227, 193, 148, 0.9); */
 }
 
 #customer-cart {
@@ -179,6 +231,18 @@ img {
   background-color: rgba(231, 197, 161);
 }
 
+.order-success{
+margin: 0 auto;
+width: 60%;
+}
+
+.about-head{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
 /*MEDIA QUERIES*/
 /*LAPTOP & Desktop*/
 @media (min-width: 992px) {
@@ -191,6 +255,19 @@ img {
     width: 60%;
   }
 }
+
+/*IPAD*/
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+ .height{
+   min-height: 70vh;
+ }
+ .carousel-caption{
+  margin-bottom:0;
+}
+}
+
 
 /*large Phone and Smaller*/
 @media (max-width: 576px) {
@@ -227,6 +304,16 @@ img {
     background-repeat: no-repeat;
   }
 
+  .mobile-head{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0px;
+  }
+
+
   #checkout-cart {
     width: 90%;
     margin: 0 auto;
@@ -244,6 +331,21 @@ img {
     padding-left: 0px;
     padding-right: 0px;
   }
+}
+
+
+.overlay {
+  width: 100%;
+  height: 100%;;
+  background-color: white;
+  opacity: .7;
+  z-index: 1;
+}
+
+.btn-xl {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
 }
 
 /*ANIMATIONS*/
