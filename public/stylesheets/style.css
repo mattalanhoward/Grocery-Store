@@ -243,6 +243,24 @@ width: 60%;
 }
 
 
+#shop-div{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.product{
+  width: 100%;  
+}
+
+.product td{
+  vertical-align: middle;
+  width: 20%;
+  text-align: center;
+}
+
+
+
+
 /*MEDIA QUERIES*/
 /*LAPTOP & Desktop*/
 @media (min-width: 992px) {

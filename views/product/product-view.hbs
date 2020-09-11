@@ -1,15 +1,15 @@
 <div class="my-3">
-  <h1 class="text-center">List of products</h1>
+  <h1 class="text-center">Products</h1>
   <hr>
   <div class="m-2" id="shop-alert"> </div>
   <div id="shop-div">
-    <table class="table container-fluid" id="product-list">
-      <thead class="thead-light">
+    <table class="table" id="product-list">
+      <thead class="thead-light text-center">
         <tr>
           <th scope="col">Product Name</th>
           <th scope="col">Picture</th>
           <th scope="col">Price/kg</th>
-          <th scope="col">category</th>
+          <th scope="col">Category</th>
           <th scope="col">Edit</th>
           <th scope="col">Remove</th>
         </tr>
@@ -21,17 +21,13 @@
             <p>{{this.name}}</p>
           </td>
           <td id="img-container">
-            <div>
               <img class="rounded " id="checkout-img" src={{this.imageUrl}}>
-            </div>
           </td>
           <td>
-            <h4> {{ this.price}} </h4>
+            <h5> {{ this.price}} </h5>
           </td>
           <td>
-            <div>
-              <h4> {{ this.category}} </h4>
-            </div>
+              <h5> {{ this.category}} </h5>
           </td>
           <td>
             <a class="btn btn-primay fa fa-pencil-square-o fa-2x" href="/product/edit/{{this._id}}"> </a>

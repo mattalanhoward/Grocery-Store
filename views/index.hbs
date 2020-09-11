@@ -16,6 +16,18 @@
       <div class="carousel-caption">
         <h1 class = "display-2 ">Healthy</h1>
         <h3>Fresh, Organic Produce, Meats, and Bread</h3>
+        {{!-- {{#if currentUser.admin}}
+          Admin        
+          {{else}} {{#if currentUser}}
+          <a href="./shop">
+            <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
+          </a>
+          <br>
+        {{else}}
+          <a href="./register">
+            <button type="button" class="btn btn-outline-light btn-lg">Join Us</button>
+          </a>
+        {{/if}}{{/if}} --}}
         {{#if currentUser}}
         <a href="./shop">
           <button type="button" class="btn btn-light btn-xl">Go To Shop</button>
