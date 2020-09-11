@@ -28,7 +28,7 @@ const frameEmailTemplate = (shopCartDetails) => {
               <h5>${firstName} ${lastName},</h5>
               <h2 class="my-3"> We've received your order! <br>
                 Thank you for using Farm Grocer</h2>
-              <h4> Your cart will be delivered to {{address}} by one of our friendly team members within 24 hours</h4> <br>
+              <h4> Your cart will be delivered to ${address} by one of our friendly team members within 24 hours</h4> <br>
               <h4>Please contact us at <a href="${email}">Farm Grocer</a> if you have any questions or concerns.  </h4>
             </div>`;
   htmlTemplate += `<hr> <div class="m-2">
@@ -81,14 +81,19 @@ const sendWelcomeEmail = (shopCartDetails) => {
   } = shopCartDetails;
   let cardId = "ID_" + _id.toString().slice(0, 5).toUpperCase();
   console.log(email);
-  sgmail.send({
-    to: email, //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com", //"mattalanhoward@gmail.com",
-    from: "mannam.sunitha@gmail.com",
-    cc: "mattalanhoward@gmail.com",
-    subject: "Invoice for your Order: " + cardId,
-    content: [{ type: "text/html", value: deliverInfo }],
-  });
-  console.log("email sent successfully ");
+  sgmail
+    .send({
+      to: email, //"mattalanhoward@gmail.com", //"mannam.sunithadasari@gmail.com",  //"mattalanhoward@gmail.com",  //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com",
+      from: "mannam.sunitha@gmail.com",
+      cc: "mattalanhoward@yahoo.com",
+      subject: "Invoice for your Order: " + cardId,
+      content: [{ type: "text/html", value: deliverInfo }],
+    })
+    .then((emailRes) => {
+      console.log("EMEAIL SENT", emailRes);
+    })
+    .catch((err) => console.log("ERROR IN THE EMAIL", err.response.body));
+  //  console.log("email sent successfully ");
 };
 
 module.exports = { sendWelcomeEmail };

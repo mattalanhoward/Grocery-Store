@@ -33,13 +33,10 @@ router.post(
     console.log(req.body);
     console.log(req.file);
     const { productname: name, category, price } = req.body;
-    // let modifyPrice = parseInt(price, 2).toFixed(2);
-    // console.log(modifyPrice);
+
     productModel
       .create({ name, category, price, imageUrl: req.file.path })
       .then((resultFromDB) => {
-        console.log(" successfulyy created product", resultFromDB);
-
         res.render("product/product-create", {
           cartCnt: req.session.cartCount,
           currentUser: req.session.currentUser,

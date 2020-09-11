@@ -64,7 +64,11 @@
       {{/if}}
 
       {{#if successMessage}}
-      <p class="alert alert-success text-center">{{successMessage}}</p>
+      <div>
+        <p class="alert alert-success text-center">{{successMessage}}
+          <a class="btn btn-primary text-center m-3" href="/product/list/"> View Products </a>
+        </p>
+      </div>
       {{/if}}
 
     </div>
