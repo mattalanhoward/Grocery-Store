@@ -10,7 +10,7 @@ const frameEmailTemplate = (shopCartDetails) => {
     customerId: { _id, firstName, lastName, email, address },
     purchaseDate,
   } = shopCartDetails;
-  let cardId = "ID_" + _id.toString().slice(0, 5).toUpperCase();
+  let cardId = "ID_" + _id.toString().slice(0, 10).toUpperCase();
   // console.log(cardId);
   // console.log("insode frameEmailTemplate");
   let productList = [];
@@ -44,10 +44,10 @@ const frameEmailTemplate = (shopCartDetails) => {
   productList.forEach((eachProduct) => {
     let subtot = (eachProduct.price * eachProduct.quantity).toFixed(2);
     htmlTemplate += `
-      <tr class="product">
+      <tr class="product-table">
         <td id="img-container">
           <div>
-            <img class="rounded " id="checkout-img" src=${eachProduct.imageUrl}>
+            <img width="100" height="75" class="rounded " id="checkout-img" src=${eachProduct.imageUrl}>
           </div>
         </td>
         <td>
@@ -79,7 +79,7 @@ const sendWelcomeEmail = (shopCartDetails) => {
   const {
     customerId: { _id, email },
   } = shopCartDetails;
-  let cardId = "ID_" + _id.toString().slice(0, 5).toUpperCase();
+  let cardId = "ID_" + _id.toString().slice(0, 10).toUpperCase();
   console.log(email);
   sgmail
     .send({
