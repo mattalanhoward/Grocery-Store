@@ -253,7 +253,7 @@ width: 60%;
 }
 
 .product td{
-  vertical-align: middle;
+  /* vertical-align: middle; */
   width: 20%;
   text-align: center;
 }
@@ -349,6 +349,7 @@ and (max-device-width : 1024px)  {
     padding-left: 0px;
     padding-right: 0px;
   }
+
 }
 
 

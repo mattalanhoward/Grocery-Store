@@ -83,9 +83,9 @@ const sendWelcomeEmail = (shopCartDetails) => {
   console.log(email);
   sgmail
     .send({
-      to: email, //"mattalanhoward@gmail.com", //"mannam.sunithadasari@gmail.com",  //"mattalanhoward@gmail.com",  //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com",
-      from: "mannam.sunitha@gmail.com",
-      cc: "mattalanhoward@yahoo.com",
+      // to: email, //"mattalanhoward@gmail.com", //"mannam.sunithadasari@gmail.com",  //"mattalanhoward@gmail.com",  //"nagaraju.dasari@gmail.com",  // "mannam.sunitha@gmail.com",
+      // from: "mannam.sunitha@gmail.com",
+      // cc: "mattalanhoward@yahoo.com",
       subject: "Invoice for your Order: " + cardId,
       content: [{ type: "text/html", value: deliverInfo }],
     })
