@@ -23,7 +23,7 @@
 <table class="table container-fluid" id="checkout-cart">
   <tbody>
     {{#each products }}
-    <tr>
+    <tr class="product-table">
       <td id="img-container">
         <div>
           <img class="rounded " id="checkout-img" src={{productId.imageUrl}}>
@@ -69,7 +69,7 @@
   const calCheckOutBill = function () {
     let subtotal = 0;
     let grandTot = 0;
-    const elements = document.querySelectorAll("#checkout-cart tbody .product")
+    const elements = document.querySelectorAll("#checkout-cart tbody .product-table")
     elements.forEach(ele => {
       let qty = ele.getElementsByClassName("qty")[0].innerText;
       let price = ele.getElementsByClassName("price")[0].innerText;

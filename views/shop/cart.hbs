@@ -109,8 +109,10 @@
         if (response.data.prodList.length === 0) {
           console.log(" no products in cart ")
           document.getElementById('cart-div').innerHTML =
-            `<p class="alert alert-success"> No Products in your cart </p>
-              < a class="btn btn-primary" href = "/shop/" > Back to Shop </a >`;
+            `<p class="alert alert-success text-center"> No Products in your cart </p>
+                      <a href="./shop">
+          <button type="button" class="btn btn-primary m-3">Back to Shop</button>
+        </a>`;
 
         } else {
           let productRow = "";
