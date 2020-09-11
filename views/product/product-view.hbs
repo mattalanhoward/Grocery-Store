@@ -7,9 +7,9 @@
       <thead class="thead-light text-center">
         <tr>
           <th scope="col">Product Name</th>
-          <th scope="col">Picture</th>
+          <th class="mobile-product-list" scope="col">Picture</th>
           <th scope="col">Price/kg</th>
-          <th scope="col">Category</th>
+          <th class="mobile-product-list" scope="col">Category</th>
           <th scope="col">Edit</th>
           <th scope="col">Remove</th>
         </tr>
@@ -20,13 +20,13 @@
           <td>
             <p>{{this.name}}</p>
           </td>
-          <td id="img-container">
+          <td id="img-container" class="mobile-product-list">
               <img class="rounded " id="checkout-img" src={{this.imageUrl}}>
           </td>
           <td>
             <h5> {{ this.price}} </h5>
           </td>
-          <td>
+          <td class="mobile-product-list">
               <h5> {{ this.category}} </h5>
           </td>
           <td>
