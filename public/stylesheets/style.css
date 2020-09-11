@@ -134,7 +134,7 @@ img {
 /* Parallax Section */
 #plx {
   margin: 50px 0px;
-  background: url(../images/Carousel/slide9.jpg);
+  background: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1599848058/slide9_v310xh.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -154,17 +154,6 @@ img {
 
 
 /*SERVICES*/
-/* .services {
-  color: white;
-  font-size: 24px;
-  height: 800px;
-  width: 100%;
-  margin: 50px 0;
-  background-image: url(../images/veg-wood-table.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  align-items: center;
-} */
 
 .service-container{
   display: flex;
@@ -207,7 +196,7 @@ footer{
 }
 
 .register {
-  background-image: url("../images/veg-wood-table.jpg");
+  background-image: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1599848834/veg-wood-table_kysqyn.jpg");
   background-repeat: no-repeat;
   background-position: absolute;
   background-size: cover;
@@ -316,7 +305,7 @@ and (max-device-width : 1024px)  {
     align-items: center;
     height: 50vh;
     padding-bottom: 200px;
-    background-image: url("../images/Carousel/slide1.jpg");
+    background-image: url("https://res.cloudinary.com/dcod1zxnl/image/upload/v1599848057/slide1-welcome_lvikj9.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
