@@ -41,7 +41,7 @@ const frameEmailTemplate = (shopCartDetails) => {
   let grandTotal = 0;
   productList.forEach((eachProduct) => {
     let subtot = (eachProduct.price * eachProduct.quantity).toFixed(2);
-    grandTotal += Number(subtot).toFixed(2);
+    grandTotal += Number(subtot);
     htmlTemplate += `
       <tr class="product-table">
         <td id="img-container">
@@ -60,6 +60,7 @@ const frameEmailTemplate = (shopCartDetails) => {
       </tr>`;
   });
   console.log(grandTotal);
+    grandTotal = grandTotal.toFixed(2);
   htmlTemplate += `</tbody> </table>`;
   htmlTemplate += `<hr> <div class="m-2"> 
                         <h3 class="text-center">Order Total: <p id="grand-tot"> ${grandTotal}</p>
