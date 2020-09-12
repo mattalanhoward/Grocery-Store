@@ -10,7 +10,6 @@
 
 
 
-
 <hr>
 <div class="m-2">
   <h2 class="text-center">ORDER SUMMARY</h2>
@@ -80,7 +79,7 @@
       grandTot += subtotal;
     });
     document.getElementById("grand-tot").innerText = "€ " + grandTot.toFixed(2);
-    document.getElementById("order-id").innerText = "ID_" + (document.getElementById("order-id").innerText).slice(0, 5).toUpperCase();
+    document.getElementById("order-id").innerText = "ID_" + (document.getElementById("order-id").innerText).slice(0, 10).toUpperCase();
   }
 
 </script>
