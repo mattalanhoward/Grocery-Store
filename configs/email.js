@@ -63,7 +63,7 @@ const frameEmailTemplate = (shopCartDetails) => {
     grandTotal = grandTotal.toFixed(2);
   htmlTemplate += `</tbody> </table>`;
   htmlTemplate += `<hr> <div class="m-2"> 
-                        <h3 class="text-center">Order Total: <p id="grand-tot"> ${grandTotal}</p>
+                        <h3 class="text-center">Order Total: € <p id="grand-tot"> ${grandTotal}</p>
                         </h3>
                         </div>`;
   htmlTemplate += `</div> </body>  </html>`;
