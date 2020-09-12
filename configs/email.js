@@ -33,9 +33,7 @@ const frameEmailTemplate = (shopCartDetails) => {
             </div>`;
   htmlTemplate += `<hr> <div class="m-2">
                         <h2 class="text-center">ORDER SUMMARY </h2>
-                        <h3 class="text-center">Order Id: <p id="order-id"> ${cardId}</p>
-                        <h3 class="text-center">Order Total: <p id="grand-tot"> </p>
-                        </h3>
+                        <h3 class="text-center">Order Id: <p id="order-id"> ${cardId}</p></h3>
                         </div>`;
   htmlTemplate += `
   <table class="table container-fluid" id="checkout-cart">
@@ -43,7 +41,7 @@ const frameEmailTemplate = (shopCartDetails) => {
   let grandTotal = 0;
   productList.forEach((eachProduct) => {
     let subtot = (eachProduct.price * eachProduct.quantity).toFixed(2);
-    grandTotal += Number(subtot);
+    grandTotal += Number(subtot).toFixed(2);
     htmlTemplate += `
       <tr class="product-table">
         <td id="img-container">
@@ -63,7 +61,7 @@ const frameEmailTemplate = (shopCartDetails) => {
   });
   console.log(grandTotal);
   htmlTemplate += `</tbody> </table>`;
-  htmlTemplate += `<hr> <div class="m-2">            
+  htmlTemplate += `<hr> <div class="m-2"> 
                         <h3 class="text-center">Order Total: <p id="grand-tot"> ${grandTotal}</p>
                         </h3>
                         </div>`;
