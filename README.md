@@ -12,6 +12,9 @@ Boilerplate with bootstrap cdn
     CLOUDINARY_NAME= cloudinaryName
     CLOUDINARY_KEY= cloudinaryKey
     CLOUDINARY_SECRET= cloudinarySecret
+    MONGODB_URI= MongoDB_URL
+    SESS_SECRET= SecretKeyForPasswordEncryption
+    SENDGRIDAPIKEY = sendGridAPIKeyForEmailFunctionality
 
 # Project Name
 
@@ -19,7 +22,7 @@ Farm Grocer
 
 ## Description
 
-This is an online grocery store in which the user can create account / login / and shop for products.
+This is an online grocery store in which the user can register / login / and shop the products.
 
 ## User Stories
 
@@ -27,34 +30,34 @@ This is an online grocery store in which the user can create account / login / a
 
 - **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
 
-- **homepage** - homepage with login / register
+- **Homepage** - homepage with login / register
 
-- **sign up** - user can register with website by entering their basic info.
+- **Register** - user can register with website by entering their basic info.
 
-- **login** - once registration is complete, user can login with their email and password.
+- **Login** - once registration is complete, user can login with their email and password.
 
-- **edit profile** - user can update profile information.
+- **Edit profile** - user can update profile information.
 
-- **logout** - user can log out.
+- **Logout** - user can log out.
 
-- **shop page** - user can scroll through items and add to cart.
+- **Shop page** - user can scroll through items and add to cart.
 
-- **cart page** - user can view items in cart, modify quantity or delete items.
+- **Cart page** - user can view items in cart, modify quantity or delete items.
 
-- **checkout page** - user can review order and checkout cart.
+- **Checkout page** - user can view the order summary.
 
 ## Backlog
 
 List of other features outside of the MVPs scope
 
-- admin authentication
-- googlemaps page for location of shop
-- about page (info about Sunitha and Matthew)
-- customer email invoice
-- admin email customer's order
-- admin upload product route
+-
+- About page ( info about developers [Sunitha and Matthew] )
+- Customer email invoice
+- Admin authentication and Login
+- Admin upload product route
+- Admin List/edit/delete products from Shop
 - cart icon
-- Fruit / Vegetable Categories
+- Fruit/Vegetable/Breads/Meat Categories
 
 ## ROUTES:
 
@@ -79,20 +82,21 @@ List of other features outside of the MVPs scope
 - GET /login
 
   - renders login.hbs with form for login
+    - email
+    - password
 
 - POST /login
 
-  - body:
-    - email
-    - password
+  - renders the home page with access to shop, edit-profile,categories,cart ( if user is customer)
+  - renders the home page with access to edit-profile,upload product, view all products (For editing and deleting) ( if user is shop-owner)
 
 - GET /edit-profile
 
   - renders edit-profile.hbs
 
-- POST /register
+- POST /edit-profile
 
-  - body:
+  - renders the edit-profile page to edit the profile information.
     - firstname
     - lastname
     - email
@@ -108,37 +112,71 @@ List of other features outside of the MVPs scope
 
   - product id
 
-- GET /:id/cart (id of user)
+- GET cart/:id (cartId of the user which is not checked-out)
 
   - renders cart.hbs
 
-- GET /:id/checkout (id of user)
-  - renders checkout.hbs
+- GET cart/incQty/:id (cartId of the user which is not checked-out)
+
+  - renders cart.hbs with incremented quantity of the product
+
+- GET cart/decQty/:id (cartId of the user which is not checked-out)
+
+  - renders cart.hbs with decremented quantity of the product
+
+- GET cart/deleteProduct/:id (cartId of the user which is not checked-out)
+
+  - renders cart.hbs without the prodcut that was deleted
+
+- GET check-out/:cartid (cartId of the user which is not checked-out)
+
+  - renders checkout.hbs with the Summary of the products ordered.
+
+- GET /product/create
+
+  - renders product-create.hbs where the shop-owner can add new products to the shop.
+
+- GET /product/list
+
+  - renders product-view.hbs where the shop-owner can view all the products in the shop and he can edit or delete the products.
+
+- GET /product/deleteProduct/:id (productID to be deleted)
+
+  - renders product-view.hbs without the product that was deleted.
+
+- GET /product/edit/:id (productID to be edited)
+
+  - renders product-edit.hbs where shop-owner can edit the product details.
+
+- POST /product/edit/
+
+  -renders product-edit.hbs with updated details of the product and a link to view the shop.
 
 ## Models
 
 User Model:
 
-1.       First name : String , required
-2.       Last name: String , required
-3.       Email-id: String , required, unique
-4.       Address : String , required
-5.       Phone number : String , required
-6.       isAdmin : Boolean {true/false}
+1.                First name : String , required
+2.                Last name: String , required
+3.                Password: String , required
+4.                Email-id: String , required, unique
+5.                Address : String , required
+6.                Phone number : String , required
+7.                isAdmin : Boolean {true/false}
 
 Product Model:
 
-1.       Name
-2.       Image
-3.       Category ( fruits/ vegetables)
-4.       Price per KG
+1.                Name
+2.                Image
+3.                Category ( fruits/ vegetables)
+4.                Price per KG
 
 Cart Model:
 
-1.       Customer Id ( Object ID)
-2.       Ordered {true,false}
-3.       Array [ ProductID -> ObjectID , Quantity ]
-4.       Date Of purchase
+1.                Customer Id ( Object ID)
+2.                Ordered {true,false}
+3.                Array [ ProductID -> ObjectID , Quantity ]
+4.                Date Of purchase
 
 ## Links
 
@@ -150,8 +188,8 @@ https://trello.com/b/WO64dOTc/project-2-grocery-store
 
 https://github.com/mattalanhoward/Grocery-Store
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://farm-grocer.herokuapp.com/)
 
 ### Slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1YozWgY7repnfUxIVvK1ln1pKCKhr4ztbdy3X9AwB0ls/edit#slide=id.p)
