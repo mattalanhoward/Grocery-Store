@@ -23,6 +23,7 @@ Farm Grocer
 ## Description
 
 This is an online grocery store in which the user can register / login / and shop the products.
+The show owner can view, add, edit and delete products in the shop.
 
 ## User Stories
 
@@ -163,27 +164,27 @@ List of other features outside of the MVPs scope
 
 User Model:
 
-1.                  First name : String , required
-2.                  Last name: String , required
-3.                  Password: String , required
-4.                  Email-id: String , required, unique
-5.                  Address : String , required
-6.                  Phone number : String , required
-7.                  isAdmin : Boolean {true/false}
+1.                   First name : String , required
+2.                   Last name: String , required
+3.                   Password: String , required
+4.                   Email-id: String , required, unique
+5.                   Address : String , required
+6.                   Phone number : String , required
+7.                   isAdmin : Boolean {true/false}
 
 Product Model:
 
-1.                  Name
-2.                  Image
-3.                  Category ( fruits/ vegetables)
-4.                  Price per KG
+1.                   Name
+2.                   Image
+3.                   Category ( fruits/ vegetables)
+4.                   Price per KG
 
 Cart Model:
 
-1.                  Customer Id ( Object ID)
-2.                  Ordered {true,false}
-3.                  Array [ ProductID -> ObjectID , Quantity ]
-4.                  Date Of purchase
+1.                   Customer Id ( Object ID)
+2.                   Ordered {true,false}
+3.                   Array [ ProductID -> ObjectID , Quantity ]
+4.                   Date Of purchase
 
 ## Links
 
