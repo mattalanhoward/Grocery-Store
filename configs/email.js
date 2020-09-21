@@ -33,9 +33,7 @@ const frameEmailTemplate = (shopCartDetails) => {
             </div>`;
   htmlTemplate += `<hr> <div class="m-2">
                         <h2 class="text-center">ORDER SUMMARY </h2>
-                        <h3 class="text-center">Order Id: <p id="order-id"> ${cardId}</p>
-                        <h3 class="text-center">Order Total: <p id="grand-tot"> </p>
-                        </h3>
+                        <h3 class="text-center">Order Id: <p id="order-id"> ${cardId}</p></h3>
                         </div>`;
   htmlTemplate += `
   <table class="table container-fluid" id="checkout-cart">
@@ -62,9 +60,10 @@ const frameEmailTemplate = (shopCartDetails) => {
       </tr>`;
   });
   console.log(grandTotal);
+    grandTotal = grandTotal.toFixed(2);
   htmlTemplate += `</tbody> </table>`;
-  htmlTemplate += `<hr> <div class="m-2">            
-                        <h3 class="text-center">Order Total: <p id="grand-tot"> ${grandTotal}</p>
+  htmlTemplate += `<hr> <div class="m-2"> 
+                        <h3 class="text-center">Order Total: <p id="grand-tot">€ ${grandTotal}</p>
                         </h3>
                         </div>`;
   htmlTemplate += `</div> </body>  </html>`;
