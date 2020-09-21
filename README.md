@@ -46,17 +46,24 @@ This is an online grocery store in which the user can register / login / and sho
 
 - **Checkout page** - user can view the order summary.
 
+- **Admin - Home page** - Admin can view prducts in shop.
+
+- **Admin - Create product page** - Admin can upload a new product to shop.
+
+- **Admin - view products page** - Admin can view,edit and delete products in the shop.
+
+- **Admin - Edit products page** - Admin can edit a product details in the shop.
+
 ## Backlog
 
 List of other features outside of the MVPs scope
 
--
 - About page ( info about developers [Sunitha and Matthew] )
 - Customer email invoice
 - Admin authentication and Login
 - Admin upload product route
 - Admin List/edit/delete products from Shop
-- cart icon
+- Cart icon
 - Fruit/Vegetable/Breads/Meat Categories
 
 ## ROUTES:
@@ -156,27 +163,27 @@ List of other features outside of the MVPs scope
 
 User Model:
 
-1.                First name : String , required
-2.                Last name: String , required
-3.                Password: String , required
-4.                Email-id: String , required, unique
-5.                Address : String , required
-6.                Phone number : String , required
-7.                isAdmin : Boolean {true/false}
+1.                  First name : String , required
+2.                  Last name: String , required
+3.                  Password: String , required
+4.                  Email-id: String , required, unique
+5.                  Address : String , required
+6.                  Phone number : String , required
+7.                  isAdmin : Boolean {true/false}
 
 Product Model:
 
-1.                Name
-2.                Image
-3.                Category ( fruits/ vegetables)
-4.                Price per KG
+1.                  Name
+2.                  Image
+3.                  Category ( fruits/ vegetables)
+4.                  Price per KG
 
 Cart Model:
 
-1.                Customer Id ( Object ID)
-2.                Ordered {true,false}
-3.                Array [ ProductID -> ObjectID , Quantity ]
-4.                Date Of purchase
+1.                  Customer Id ( Object ID)
+2.                  Ordered {true,false}
+3.                  Array [ ProductID -> ObjectID , Quantity ]
+4.                  Date Of purchase
 
 ## Links
 
